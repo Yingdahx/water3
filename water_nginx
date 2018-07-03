@@ -1,0 +1,16 @@
+
+server {
+    listen 8093;
+
+    location / {
+        proxy_pass http://127.0.0.1:8013;
+    }
+
+    location /static {
+        root /var/water_com;
+    }
+
+    location /media {
+        root /var/water_com;
+    }
+}

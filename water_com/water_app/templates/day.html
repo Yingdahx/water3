@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>智能后台</title>
+    <!-- CSS -->
+    <link href="{% static 'assets/css/index.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/newIndex.css' %}" rel="stylesheet" type="text/css">
+    <link href="//at.alicdn.com/t/font_712992_ureo4b3d8g.css" rel="stylesheet" type="text/css">
+    <script src="{% static './assets/js/jquery.min.js' %}"></script>
+    <!-- <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script> -->
+</head>
+<body class="allBg">
+<div class="leftCon">
+    <div class="commonDiv">
+        <div class="work"><p>安装设备</p></div>
+        <div class="iconList">
+            <ul>
+                {% for e in e_ts %}
+                    {% if e.name == '烟感' %}
+                    <li><img src="{% static 'assets/img/smoke.png' %}"><span>{{e.name}}({{e.count}}个)</span></li>
+                    {% elif e.name == '水压' %}
+                    <li><img src="{% static 'assets/img/water.png' %}"><span>{{e.name}}({{e.count}}个)</span></li>
+                    {% elif e.name == '门磁' %}
+                    <li><img src="{% static 'assets/img/Elevator.png' %}"><span>{{e.name}}({{e.count}}个)</span></li>
+                    {% endif %}
+                {% empty %}
+                {% endfor %}
+                <!-- <li><img src="assets/img/smoke.png"><span>烟感(20个)</span></li>
+                <li><img src="assets/img/water.png"><span>水压(20个)</span></li>
+                <li><img src="assets/img/Elevator.png"><span>门禁(20个)</span></li> -->
+            </ul>
+        </div>
+        <div class="iconList2">
+            <ul>
+                <li><p><a href="/day">日志</a></p></li>
+                <li><p><a href="/Week">周志</a></p></li>
+                <li><p><a href="/month">月志</a></p></li>
+                <li><p><a href="/police_day">日报警</a></p></li>
+                <li><p><a href="/police_Week">周报警</a></p></li>
+                <li><p><a href="/police_month">月报警</a></p></li>
+            </ul>
+        </div>
+        <div class="backBtn">
+            <a href="/index">
+                <img src="{% static 'assets/img/home.png' %}">
+                <span>返回指挥中心</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="rightCon">
+    <div class="commonDiv">
+        <div class="work"><p>报警情况</p></div>
+        <ul class="alarmList">
+            {% for ri in right %}
+            <a href="/details?lng={{ri.lng}}&lat={{ri.lat}}">
+            <li>
+                <img src="{% static 'assets/img/smoke.png' %}">
+
+                <div class="Alarm_equipment">【烟感】</div>
+
+                <div class="Alarm_position">{{ri.name}}</div>
+
+                <div class="Alarm_data">{{ri.num}}</div>
+            </li>
+            </a>
+            {% empty %}
+            {% endfor %}
+            <!-- <li>
+                <img src="assets/img/smoke.png">
+
+                <div class="Alarm_equipment">【烟感】</div>
+
+                <div class="Alarm_position">桃浦五村迎春苑</div>
+
+                <div class="Alarm_data">25</div>
+            </li>
+            <li>
+                <img src="assets/img/smoke.png">
+
+                <div class="Alarm_equipment">【烟感】</div>
+
+                <div class="Alarm_position">桃浦五村迎春苑</div>
+
+                <div class="Alarm_data">25</div>
+            </li> -->
+        </ul>
+    </div>
+</div>
+
+<div class="centerCon">
+    <div class="commonDiv">
+        <div class="work"><p class="myMargin">日志</p></div>
+        <div class="work">
+            <table>
+                <tbody><tr>
+                    <th>报警救援名称</th>
+                    <th>状态</th>
+                    <th>上次报警时间</th>
+                    <th>是否处理</th>
+                </tr>
+
+                {% for d in day_records %}
+                  <tr>
+                    <td>{{d.name}}</td>
+                    {% if d.info_type == '1' %}
+                    <td id="jingji">【紧急】</td>
+                    {% elif d.info_type == '4' %}
+                    <td id="yichang">【异常】</td>
+                    {% elif d.info_type == '7' %}
+                    <td id="zhengchang">【正常】</td>
+                    {% endif %}
+                    <td>{{d.create_time}}</td>
+                    <td>待处理</td>
+                  </tr>
+                  {% empty %}
+                  {% endfor %}
+                </tbody>
+            </table> 
+
+            <p class="clear"></p>
+            <div style='display: inline-block;margin-left: 20px'>
+             <!-- 如果当前是第一页，就不显示【上一页】链接 -->
+            {% ifnotequal pageNo 1 %}
+                <a href="?pageNo={{ pageNo }}&&allPage={{ allPage }}&&pageType=pageUp" style='color:white'>
+                    上一页
+                </a>
+            {% endifnotequal %} 
+
+            <a style="color: grey">第{{ pageNo }}/{{ allPage }}页</a> 
+
+             <!-- 如果当前是最后一页，就不显示【下一页】链接 -->
+            {% ifnotequal pageNo allPage %}
+                <a href="?pageNo={{ pageNo }}&&allPage={{ allPage }}&&pageType=pageDown" style='color:white'>
+                    下一页
+                </a>
+            {% endifnotequal %}
+            </div>    
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

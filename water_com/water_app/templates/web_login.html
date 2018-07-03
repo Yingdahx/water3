@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>智能后台</title>
+    <!-- CSS -->
+    <link href="{% static 'assets/css/index.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/newIndex.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/map.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/public.css' %}" rel="stylesheet" type="text/css">
+    <link href="//at.alicdn.com/t/font_712992_e1rband30o.css" rel="stylesheet" type="text/css">
+    <!--地图-->
+    <!-- <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script> -->
+    <script src="{% static './assets/js/jquery.min.js' %}"></script>
+    <script type="text/javascript"
+            src="http://webapi.amap.com/maps?v=1.4.4&key=a3fb6f680300410b7547dd55a62af58c"></script>
+    <script src="http://webapi.amap.com/ui/1.0/main-async.js"></script>
+</head>
+<body class="allBg">
+
+<div id="mapCon" style="text-align: center;">
+    <p style="color: white;">物业登录入口</p>
+    <p class="clear"></p>
+    <form action="/" method="POST" id="web_login">
+        {% csrf_token %}
+        <input type="input" placeholder="请输入手机号码" name="phone">
+        <p class="clear"></p>
+        <input type="input" placeholder="请输入密码" name="password">
+        <p class="clear"></p>
+        <input type="submit" name="web_login" value="登录">
+        <p class="clear"></p>
+    </form>
+    <p class="clear"></p>
+    <p style="color: white;">大屏入口</p>
+    <p class="clear"></p>
+    <form action="/index" method="GET">
+        {% csrf_token %}
+        <input type="submit" name="" value="免登陆进入">
+    </form>
+</div>
+<div class="logoCon"><img src="{% static 'assets/img/title_logo.png' %}"></div>
+</body>
+</html>

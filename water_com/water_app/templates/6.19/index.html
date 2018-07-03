@@ -1,0 +1,178 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>智能后台</title>
+
+<!-- CSS -->
+	<link href="http://p96503s7l.bkt.clouddn.com/css.css" rel="stylesheet" type="text/css"> 
+    <link rel="stylesheet" href="http://p96503s7l.bkt.clouddn.com/index.css" />
+    <link rel="stylesheet" href="http://p96503s7l.bkt.clouddn.com/map.css"/>
+
+    <!-- 引入 echarts.js -->
+    <script src="http://cdn.bootcss.com/echarts/3.2.3/echarts.min.js"></script>
+	<script src="http://p96503s7l.bkt.clouddn.com/echarts.common.min.js"></script>
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="http://p96503s7l.bkt.clouddn.com/jquery.SuperSlide2.1.2.js"></script>
+    <!--地图-->
+    <script type="text/javascript"
+            src="http://webapi.amap.com/maps?v=1.4.4&key=a3fb6f680300410b7547dd55a62af58c"></script>
+    <script src="http://webapi.amap.com/ui/1.0/main-async.js"></script>
+</head>
+
+<body class="white_text">
+<!--地图开始-->
+<div id="map-service"></div>
+<!--地图结束-->
+
+<!--左侧-->
+<div class="surface_header1">
+
+    <div class="work">
+
+        <p>安装设备<span class="english">&nbsp;&nbsp;Installation Equipment</span></p>
+
+        <div class="equipment_tab">
+
+
+            {% for e in e_ts %}
+            <div class="equipment">
+
+                <img src="http://p96503s7l.bkt.clouddn.com/smoke.png">
+
+                <div class="equipment_txt">{{e.name}}({{e.count}}个)</div>
+
+            </div>
+            {% empty %}
+            {% endfor %}
+            
+        </div>
+
+        <div class="Delimiter_one"></div>
+
+        <div class="Delimiter_two"></div>
+
+        <div class="Jump_heard">
+
+            <a href="/day">
+
+                <div class="Jump">
+
+                    <div class="Jump_txt">日志</div>
+
+                </div>
+
+            </a>
+
+            <a href="/Week">
+
+                <div class="Jump">
+
+                    <div class="Jump_txt">周志</div>
+
+                </div>
+
+            </a>
+
+            <a href="/month">
+
+                <div class="Jump">
+
+                    <div class="Jump_txt">月志</div>
+
+                </div>
+
+            </a>
+
+            <a href="/police_day">
+
+                <div class="Jump">
+
+                    <div class="Jump_txt">日报警</div>
+
+                </div>
+
+            </a>
+
+            <a href="/police_Week">
+
+                <div class="Jump">
+
+                    <div class="Jump_txt">周报警</div>
+
+                </div>
+
+            </a>
+
+            <a href="/police_month">
+
+                <div class="Jump">
+
+                    <div class="Jump_txt">月报警</div>
+
+                </div>
+
+            </a>
+
+        </div>
+
+        <div class="Delimiter_one" style="margin-top:10%"></div>
+
+        <div class="Delimiter_two"></div>
+
+        <div class="equipment_tab">
+
+            <a href="/">
+
+                <div class="Jump" style="width:90%;">
+
+                    <img src="http://p96503s7l.bkt.clouddn.com/home.png">
+
+                    <div class="equipment_txt">返回指挥中心</div>
+
+                </div>
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+<!--logo-->
+<div class="surface_header_week">
+    <img src="http://p96503s7l.bkt.clouddn.com/home.png">
+</div>
+
+<!--右侧-->
+<div class="surface_header1 rightDiv">
+
+    <div class="work">
+
+        <p>报警情况<span class="english">&nbsp;&nbsp;Alarm Situation</span></p>
+
+        {% for ri in right %}
+        <a href="/details?lng={{ri.lng}}&lat={{ri.lat}}"><div class="Alarm">
+
+            <img src="http://p96503s7l.bkt.clouddn.com/smoke.png">
+
+            <div class="Alarm_equipment">【烟感】</div>
+
+            <div class="Alarm_position">{{ri.name}}</div>
+
+            <div class="Alarm_data">{{ri.num}}</div>
+
+        </div></a>
+        {% empty %}
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<script src="http://p96503s7l.bkt.clouddn.com/map.js"></script>
+</body>
+</html>

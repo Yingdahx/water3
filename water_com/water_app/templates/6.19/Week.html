@@ -1,0 +1,217 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>智能后台</title>
+
+<!-- CSS -->
+    <link href="{% static 'assets/css/css.css' %}" rel="stylesheet" type="text/css"> 
+    <link rel="stylesheet" href="{% static 'assets/css/index.css' %}" />
+         
+    <!-- 引入 echarts.js -->
+    <script src="http://cdn.bootcss.com/echarts/3.2.3/echarts.min.js"></script>
+    <script src="{% static 'assets/js/echarts.common.min.js' %}"></script>
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="{% static 'assets/js/jquery.SuperSlide2.1.2.js' %}"></script> 
+</head>
+
+<body  class="white_body">
+
+<div class="surface_box">
+
+    <div class="surface_header">
+    
+    	<div class="work">
+        
+        	<p>安装设备</p>
+        	
+				<div class="equipment_tab"> 
+                
+                    {% for e in e_ts %}
+                    <div class="equipment">
+
+                        <img src="{% static 'assets/img/smoke.png' %}">
+
+                        <div class="equipment_txt">{{e.name}}({{e.count}}个)</div>
+
+                    </div>
+                    {% empty %}
+                    {% endfor %}
+                    
+                
+                </div>
+                
+                
+                <div class="Delimiter_two"></div>
+                
+                <div class="Jump_heard">
+                
+                	<a href="/day">
+                
+                    <div class="Jump"> 
+                        
+                        <div class="Jump_txt">日志</div>
+                    
+                    </div>
+                
+                </a> 
+                
+                	<a href="/Week">
+                
+                    <div class="Jump"> 
+                        
+                        <div class="Jump_txt">周志</div>
+                    
+                    </div>
+                
+                </a>
+                
+                	<a href="/month">
+                
+                    <div class="Jump"> 
+                        
+                        <div class="Jump_txt">月志</div>
+                    
+                    </div>
+                
+                </a> 
+                
+                	<a href="/police_day">
+                
+                    <div class="Jump"> 
+                        
+                        <div class="Jump_txt">日报警</div>
+                    
+                    </div>
+                
+                </a> 
+                
+                	<a href="/police_Week">
+                
+                    <div class="Jump"> 
+                        
+                        <div class="Jump_txt">周报警</div>
+                    
+                    </div>
+                
+                </a> 
+                
+                	<a href="/police_month">
+                
+                    <div class="Jump"> 
+                        
+                        <div class="Jump_txt">月报警</div>
+                    
+                    </div>
+                
+                </a>  
+                
+                </div>
+                
+                <div class="Delimiter_one" style="margin-top:10%"></div>
+                
+                <div class="Delimiter_two"></div>
+                
+                <div class="equipment_tab"> 
+                
+                		<a href="/">
+                
+                   		 <div class="Jump" style="width:90%;">
+                    
+                        <img src="{% static 'assets/img/home.png' %}">
+                        
+                        <div class="equipment_txt">返回指挥中心</div>
+                    
+                    </div>  
+                    
+                    	</a>
+                     
+                </div>
+                
+             
+        </div>   
+        
+    </div>
+    
+    <div class="surface_header_week" style="margin-right:2%; width:64%;">	 
+        
+        <div class="surface_header" style=" float:left; width:100%; ">
+    
+    		<div class="work">
+        
+        	<p style="margin-left:2%">周志</p> 
+        	
+            <div class="week"> 
+            
+                <table width="96%" border="0" cellspacing="1" cellpadding="0"> 
+                
+                    <tr> 
+                    
+                        <td  >&nbsp;</td> 
+                        
+                        <td>烟感</td> 
+                        
+                        <td>水压</td>
+                        
+                        <td>门禁</td>  
+                        
+                    </tr> 
+
+                    {% for res in r  %}
+                    <tr> 
+                    
+                        <td>{{res.week_day}}</td> 
+                        
+                        <td>{{res.num}}</td> 
+                        
+                        <td>0</td>
+                        
+                        <td>0</td>  
+  
+                    </tr>  
+                    {% empty %}
+                    {% endfor %}
+                
+               
+                </table> 
+                 
+            </div>   
+
+        </div>
+        
+        </div>
+    
+    </div> 
+    
+    <div class="surface_header">
+    
+    	<div class="work">
+        
+        	<p>报警情况</p> 
+        	
+            {% for ri in right %}
+            <a href="/details/{{ri.name}}/"><div class="Alarm">
+
+                <img src="{% static 'assets/img/smoke.png' %}">
+
+                <div class="Alarm_equipment">【烟感】</div>
+
+                <div class="Alarm_position">{{ri.name}}</div>
+
+                <div class="Alarm_data">{{ri.num}}</div>
+
+            </div></a>
+            {% empty %}
+            {% endfor %}
+            
+           
+            
+        </div>   
+        
+    </div>
+    
+</div>
+
+</body>
+</html>

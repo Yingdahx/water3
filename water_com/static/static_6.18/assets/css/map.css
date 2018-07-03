@@ -1,0 +1,63 @@
+ 
+/*地图*/
+/*add*/
+#map-service{position: absolute;width: 100%;height:100%;z-index: 1;}
+.nameInfo{
+    width: 100px;
+    padding: 0 0 0 20px;
+    color:#fff;
+}
+.circleCon {
+    width: 16px;
+    height: 16px;
+    border-radius: 20px;
+    background: #f44336;
+    position: relative;
+    z-index: 1;
+    float: left;
+}
+
+.circleCon span{position:absolute;right:0;top:0;}
+.circleCon:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 50%;
+    -webkit-animation: opac 1.5s infinite;
+    -webkit-animation-delay: 2s;
+    background: #f44336;
+    z-index: -1;
+}
+.circleCon:after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 50%;
+    -webkit-animation: opac 2s infinite;
+    -webkit-animation-delay: 4s;
+    background: #f44336;
+    z-index: -1;
+}
+.level1{background: #f44336;}
+.level1.circleCon:before{background: #f44336;}
+.level1.circleCon:after{background: #f44336;}
+
+.level2{background: #ff9900;}
+.level2.circleCon:before{background: #ff9900;}
+.level2.circleCon:after{background: #ff9900;}
+
+.level3{background: #009ed9;}
+.level3.circleCon:before{background: #009ed9;}
+.level3.circleCon:after{background: #009ed9;}
+@-webkit-keyframes opac {
+    from {
+        opacity: 1;
+        -webkit-transform: scale(1, 1)
+    }
+    to {
+        opacity: 0;
+        -webkit-transform: scale(2, 2)
+    }
+}

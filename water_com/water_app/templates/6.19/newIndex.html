@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>智能后台</title>
+    <!-- CSS -->
+    <link href="{% static 'assets/css/index.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/newIndex.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/map.css' %}" rel="stylesheet" type="text/css">
+    <!--地图-->
+    <script type="text/javascript"
+            src="http://webapi.amap.com/maps?v=1.4.4&key=a3fb6f680300410b7547dd55a62af58c"></script>
+    <script src="http://webapi.amap.com/ui/1.0/main-async.js"></script>
+</head>
+<body class="allBg">
+    <div class="leftCon">
+        <div class="commonDiv">
+            <div class="work"><p>安装设备</p></div>
+            <div class="iconList">
+                <ul>
+                    {% for e in e_ts %}
+                    <li><img src="{% static 'assets/img/smoke.png' %}"><span>{{e.name}}({{e.count}}个)</span></li>
+                    {% empty %}
+                    {% endfor %}
+                    <!-- <li><img src="{% static 'assets/img/smoke.png' %}"><span>烟感(20个)</span></li>
+                    <li><img src="{% static 'assets/img/water.png' %}"><span>水压(20个)</span></li>
+                    <li><img src="{% static 'assets/img/Elevator.png' %}"><span>门禁(20个)</span></li> -->
+                </ul>
+            </div>
+            <div class="iconList2">
+                <ul>
+                    <li><p><a href="/day">日志</a></p></li>
+                    <li><p><a href="/Week">周志</a></p></li>
+                    <li><p><a href="/month">月志</a></p></li>
+                    <li><p><a href="/police_day">日报警</a></p></li>
+                    <li><p><a href="/police_Week">周报警</a></p></li>
+                    <li><p><a href="/police_month">月报警</a></p></li>
+                </ul>
+            </div>
+            <div class="backBtn">
+                <a href="/">
+                    <img src="{% static 'assets/img/home.png' %}">
+                    <span>返回指挥中心</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="rightCon">
+        <div class="commonDiv">
+            <div class="work"><p>报警情况</p></div>
+            <ul class="alarmList">
+
+                {% for ri in right %}
+                <a href="/details?lng={{ri.lng}}&lat={{ri.lat}}">
+                <li>
+                    <img src="{% static 'assets/img/smoke.png' %}">
+
+                    <div class="Alarm_equipment">【烟感】</div>
+
+                    <div class="Alarm_position">{{ri.name}}</div>
+
+                    <div class="Alarm_data">{{ri.num}}</div>
+                </li>
+                </a>
+                {% empty %}
+                {% endfor %}
+                
+            </ul>
+        </div>
+    </div>
+
+    <div id="mapCon"></div>
+    <script src="{% static './assets/js/map.js' %}"></script>
+</body>
+</html>

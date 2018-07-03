@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>智能后台</title>
+    <!-- CSS -->
+    <link href="{% static 'assets/css/index.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/newIndex.css' %}" rel="stylesheet" type="text/css">
+    <script src="{% static './assets/js/jquery.min.js' %}"></script>
+    <!-- <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script> -->
+</head>
+<body class="allBg">
+<div class="leftCon">
+    <div class="commonDiv">
+        <div class="work"><p>安装设备</p></div>
+        <div class="iconList">
+            <ul>
+                {% for e in e_ts %}
+                    {% if e.name == '烟感' %}
+                    <li><img src="{% static 'assets/img/smoke.png' %}"><span>{{e.name}}({{e.count}}个)</span></li>
+                    {% elif e.name == '水压' %}
+                    <li><img src="{% static 'assets/img/water.png' %}"><span>{{e.name}}({{e.count}}个)</span></li>
+                    {% elif e.name == '门磁' %}
+                    <li><img src="{% static 'assets/img/Elevator.png' %}"><span>{{e.name}}({{e.count}}个)</span></li>
+                    {% endif %}
+                {% empty %}
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="iconList2">
+            <ul>
+                <li><p><a href="/day">日志</a></p></li>
+                <li><p><a href="/Week">周志</a></p></li>
+                <li><p><a href="/month">月志</a></p></li>
+                <li><p><a href="/police_day">日报警</a></p></li>
+                <li><p><a href="/police_Week">周报警</a></p></li>
+                <li><p><a href="/police_month">月报警</a></p></li>
+            </ul>
+        </div>
+        <div class="backBtn">
+            <a href="/index">
+                <img src="{% static 'assets/img/home.png' %}">
+                <span>返回指挥中心</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="rightCon">
+    <div class="commonDiv">
+        <div class="work"><p>报警情况</p></div>
+        <ul class="alarmList">
+            {% for ri in right %}
+            <a href="/details?lng={{ri.lng}}&lat={{ri.lat}}">
+            <li>
+                <img src="{% static 'assets/img/smoke.png' %}">
+
+                <div class="Alarm_equipment">【烟感】</div>
+
+                <div class="Alarm_position">{{ri.name}}</div>
+
+                <div class="Alarm_data">{{ri.num}}</div>
+            </li>
+            </a>
+            {% empty %}
+            {% endfor %}
+            <!-- <li>
+                <img src="assets/img/smoke.png">
+
+                <div class="Alarm_equipment">【烟感】</div>
+
+                <div class="Alarm_position">桃浦五村迎春苑</div>
+
+                <div class="Alarm_data">25</div>
+            </li>
+            <li>
+                <img src="assets/img/smoke.png">
+
+                <div class="Alarm_equipment">【烟感】</div>
+
+                <div class="Alarm_position">桃浦五村迎春苑</div>
+
+                <div class="Alarm_data">25</div>
+            </li> -->
+        </ul>
+    </div>
+</div>
+
+<div class="centerCon">
+    <div class="commonDiv">
+        <div class="work"><p class="myMargin">周志</p></div>
+        <div class="week">
+
+            <table width="96%" border="0" cellspacing="1" cellpadding="0">
+
+                <tbody><tr>
+
+                    <td>&nbsp;</td>
+
+                    <td>烟感</td>
+
+                    <td>水压</td>
+
+                    <td>门禁</td>
+
+                </tr>
+
+                {% for res in r  %}
+                <tr> 
+                
+                    <td>{{res.week_day}}</td> 
+                    
+                    <td>{{res.num}}</td> 
+                    
+                    <td>0</td>
+                    
+                    <td>0</td>  
+
+                </tr>  
+                {% empty %}
+                {% endfor %}
+
+                </tbody></table>
+
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

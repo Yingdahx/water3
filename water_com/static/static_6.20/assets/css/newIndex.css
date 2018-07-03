@@ -1,0 +1,125 @@
+body,html{height: 100%;}
+.allBg{background: url("../img/bg.png") no-repeat center bottom #000;overflow: hidden;}
+.rightCon{width: 15%;height:100%;max-height: 700px;padding: 20px 2% 20px 0;position: absolute;right:0;top:0;}
+.leftCon{width: 15%;height:100%;max-height: 700px;padding: 20px 0 20px 2%;position: absolute;left:0;top:0;}
+
+.commonDiv{background: rgba(0, 0, 0, 0.4);border: 1px rgba(66, 70, 95, 0.6) solid;height: 100%;}
+#mapCon{width:66%;position: absolute;top:20px; left: 17%;height:100%;max-height: 702px;}
+
+
+
+.english{ font-size:0.8em;  width: 60%; overflow:hidden; text-overflow:ellipsis; white-space: nowrap;position: relative;top:4px;}
+.work{}
+.work p{ font-size:1.4em; color:#fefefe;margin-top:20px;; margin-left:5%; text-shadow:0 0 1px #fff, 0 0 1px #fff, 0 0 3px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF; margin-bottom:12px;}
+.worl_txt{ font-size:0.7em; color:#3fe9ce;margin-top:10px; margin-left:20px; margin-bottom:2%}
+
+.logo{margin:auto;text-align:center}
+.logo img{ width:50%;}
+
+.iconList{
+    border-bottom: 1px solid #1e2732;
+    margin: 30px 5% 0;
+    height: 300px;
+}
+.iconList ul{
+    border-bottom: 3px solid #1e2732;
+    height: 290px;
+}
+.iconList li{
+    background-color: rgba(40, 54, 64, 0.45);
+    height: 42px;
+    line-height: 42px;
+    text-align: center;
+    border: 1px rgba(66, 70, 95, 0.6) solid;
+    overflow: hidden;
+    margin-top: 12px;
+    color:#797f87;
+}
+.iconList li img{
+    margin-top: 12px;
+    margin-right:10px;
+    width: 20px;
+    transition: 0.3s;
+    float:left;
+    margin-left: 23%;
+}
+.iconList li span{float: left;}
+
+.iconList2{
+    margin: 10px 5% 0;
+    height: 150px;
+}
+.iconList2 li{
+    float: left;
+    width: 48%;
+    margin-top: 10px;
+}
+.iconList2 li:nth-child(2n){margin-left: 4%;}
+.iconList2 li p{
+    background: rgba(40, 54, 64, 0.45);
+    height: 36px;line-height: 36px;
+    border: 1px rgba(66, 70, 95, 0.6) solid;
+    text-align: center;
+}
+.iconList2 li p a{color:#797f87;}
+.backBtn{
+    background: rgba(40, 54, 64, 0.45);
+    margin: 10px 5% 0;
+    height: 42px;
+    line-height: 42px;
+    border: 1px rgba(66, 70, 95, 0.6) solid;
+    text-align: center;
+    color:#797f87;
+}
+.backBtn img{
+    margin-top: 12px;
+    margin-right:10px;
+    width: 20px;
+    transition: 0.3s;
+    float:left;
+    margin-left: 23%;
+}
+.backBtn span{float: left;}
+.backBtn a{color:#797f87;}
+
+.alarmList{margin: 10px 5% 0;}
+.alarmList li{line-height: 36px;overflow: hidden;}
+.alarmList img{float: left;width: 16px;margin: 7px 0 0 0;}
+.Alarm{float: left;}
+.Alarm{}
+.Alarm_equipment {float: left;color:#e93f4b;}
+.Alarm_position{
+    float: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 28%;
+}
+.Alarm_position a{color:#8a9099;}
+.Alarm_data{float: right;color:#8a9099;}
+
+/*内页样式*/
+.centerCon{
+    width:66%;position: absolute;top:20px; left: 17%;height:100%;max-height: 702px;
+    box-sizing: border-box;padding: 0 20px 2px;
+}
+.work .myMargin{margin-left: 20px;}
+.work table{margin-left:20px; margin-top:16px;; line-height:24px; text-align: center;width: 100%;}
+.work th{ color:#FFFFFF; font-size:1.4em; width:20%;line-height:30px;  }
+.work td{ color:#8a9099; font-size:1.2em;line-height:32.5px; margin-top:6px;}
+
+#zhengchang{ color:#3fe9ce;}
+#yichang{ color:#C9AA3B;}
+#jingji{ color:#EC4649;}
+/*week*/
+.week{ width:100%;}
+.week table{ color:#8a9099; }
+.week table td{ border:1px solid #1c1e29; text-align:center; width:25%; line-height:77.5px;}
+
+
+
+
+
+
+
+

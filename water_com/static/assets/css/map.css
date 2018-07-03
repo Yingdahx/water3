@@ -1,0 +1,98 @@
+ 
+/*地图*/
+/*add*/
+.white_text{color:#fff;}
+.white_text .equipment_txt{color:#fff;}
+.white_text .Jump_txt{color:#fff;}
+.white_text .Alarm_position{color:#fff;}
+.white_text .Alarm_data{color:#fff;}
+.white_text .Delimiter_one{margin-top: 0;}
+
+html,body{height:100%;}
+#map-service{position: absolute;width: 100%;height:100%;z-index: 1;}
+.nameInfo{
+    width: 200px;
+    padding: 0 0 0 10px;
+    margin: 0 0 0 20px;
+    color:#000;
+    font-size:16px;
+    position: relative;
+    z-index: 1;
+}
+.circleCon {
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background: #f44336;
+    position: relative;
+    z-index: 3;
+    float: left;
+}
+
+.circleCon span{position:absolute;right:0;top:0;}
+.circleCon:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 50%;
+    -webkit-animation: opac 2s infinite;
+    -webkit-animation-delay: 2s;
+    background: #f44336;
+    z-index: 2;
+}
+.circleCon:after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 50%;
+    -webkit-animation: opac 2s infinite;
+    -webkit-animation-delay: 4s;
+    background: #f44336;
+    z-index: 2;
+}
+.level1{background: #f44336;}
+.level1.circleCon:before{background: #f44336;}
+.level1.circleCon:after{background: #f44336;}
+
+.level2{background: #ff9900;}
+.level2.circleCon:before{background: #ff9900;}
+.level2.circleCon:after{background: #ff9900;}
+
+.level3{background: #009ed9;}
+.level3.circleCon:before{background: #009ed9;}
+.level3.circleCon:after{background: #009ed9;}
+@-webkit-keyframes opac {
+    from {
+        opacity: 1;
+        -webkit-transform: scale(1, 1)
+    }
+    to {
+        opacity: 0;
+        -webkit-transform: scale(3, 3)
+    }
+}
+.popBox{background: rgba(0,0,0,.7);color:#fff; min-width: 220px;
+    border-radius: 5px;line-height: 30px;padding: 10px;font-size:14px;
+    overflow: hidden;
+}
+.clsoeIcon{line-height: 12px;text-align:right;cursor: pointer;}
+.tit{width: 90px;float: left;}
+.fontBlue{color:#009ed9;}
+.alertInfo{
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+.alertInfoCon{width: 300px;min-height: 100px;background: rgba(0,0,0,.9);border-radius: 5px;padding: 10px;}
+._rightIcon{float: right;color: #fff;cursor: pointer;}
+.alertInfoCon2{overflow: hidden;color:#fff;line-height: 30px;}
