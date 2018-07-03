@@ -1481,138 +1481,138 @@ def details(request):
 def analysis(request):
     ctx = {}
 
-    # #登录
-    # print('----------登录----------')
-    # url = 'http://47.97.210.144/brain2/usersystem/user/login.do'
-    # platformId =  1
-    # password = 'fire123456'
-    # #md加密
-    # p1 = hashlib.md5()
-    # p1.update(password.encode(encoding='utf-8'))
+    #登录
+    print('----------登录----------')
+    url = 'http://47.97.210.144/brain2/usersystem/user/login.do'
+    platformId =  1
+    password = 'fire123456'
+    #md加密
+    p1 = hashlib.md5()
+    p1.update(password.encode(encoding='utf-8'))
 
-    # login_params = {
-    #     'platformId' : platformId,
-    #     'loginName' : 'fire',
-    #     'password' : p1.hexdigest(),
-    #     }
+    login_params = {
+        'platformId' : platformId,
+        'loginName' : 'fire',
+        'password' : p1.hexdigest(),
+        }
 
-    # login_response = requests.post(url, params=login_params).json()
+    login_response = requests.post(url, params=login_params).json()
 
-    # print(login_response)
-    # ctx['Authenticator'] = Authenticator = login_response['Data']['extraInfoObject']['Authenticator']
-    # ctx['message'] = message = 'login success'
+    print(login_response)
+    ctx['Authenticator'] = Authenticator = login_response['Data']['extraInfoObject']['Authenticator']
+    ctx['message'] = message = 'login success'
 
-    # login = Login()
-    # login.Authenticator = Authenticator
-    # login.save()
-    # print('登录获取的token：'+Authenticator)
-    # print('----------登录结束----------')
+    login = Login()
+    login.Authenticator = Authenticator
+    login.save()
+    print('登录获取的token：'+Authenticator)
+    print('----------登录结束----------')
 
-    # Block.objects.all().delete()
-    # Getdata_v2.objects.all().delete()
-    # Equipment_type.objects.all().delete()
-    # Equipment.objects.all().delete()
-    # #关闭多余网络连接 
-    # s = requests.session()
-    # s.keep_alive = False
+    Block.objects.all().delete()
+    Getdata_v2.objects.all().delete()
+    Equipment_type.objects.all().delete()
+    Equipment.objects.all().delete()
+    #关闭多余网络连接 
+    s = requests.session()
+    s.keep_alive = False
 
-    # print('----------请求meta数据----------')
-    # au = Login.objects.all().order_by('-add_time').first().Authenticator
-    # codes = ['DATA_ROKUVNQU','DATA_YNUXZLMW','DATA_TYLCDREW','DATA_QAYHBUCY','DATA_ZLPQXEOV','DATA_CRPUEZTF',
-    #          'DATA_OCEWLFLS','DATA_WLBZWFBF','DATA_HKPSQWCX','DATA_EYBSLXCI','DATA_KALNNEVQ',
-    #          'DATA_KQDYAAUK','DATA_OEVIPMPA'] #'DATA_AEHBABKR'-人体红外感应返回fail
-    # names = ['烟感','门磁','视频','垃圾满溢','地磁','水压','红外周界','电弧灭弧','人脸识别','充电桩','电梯','PH','溶解氧']
+    print('----------请求meta数据----------')
+    au = Login.objects.all().order_by('-add_time').first().Authenticator
+    codes = ['DATA_ROKUVNQU','DATA_YNUXZLMW','DATA_TYLCDREW','DATA_QAYHBUCY','DATA_ZLPQXEOV','DATA_CRPUEZTF',
+             'DATA_OCEWLFLS','DATA_WLBZWFBF','DATA_HKPSQWCX','DATA_EYBSLXCI','DATA_KALNNEVQ',
+             'DATA_KQDYAAUK','DATA_OEVIPMPA'] #'DATA_AEHBABKR'-人体红外感应返回fail
+    names = ['烟感','门磁','视频','垃圾满溢','地磁','水压','红外周界','电弧灭弧','人脸识别','充电桩','电梯','PH','溶解氧']
 
-    # for code in codes:
-    #     post_params = {
-    #         "dataCode": code
-    #         # "startTime":1525104000,
-    #         # "endTime":1530115200
-    #     }
-    #     url = 'http://47.97.210.144/brain2/dataResource/getDataList.do'
-    #     headerdata = {"Content-type": "application/x-www-form-urlencoded","Authenticator": au,}
+    for code in codes:
+        post_params = {
+            "dataCode": code
+            # "startTime":1525104000,
+            # "endTime":1530115200
+        }
+        url = 'http://47.97.210.144/brain2/dataResource/getDataList.do'
+        headerdata = {"Content-type": "application/x-www-form-urlencoded","Authenticator": au,}
 
-    #     #关闭多余网络连接 
-    #     s = requests.session()
-    #     s.keep_alive = False
+        #关闭多余网络连接 
+        s = requests.session()
+        s.keep_alive = False
 
-    #     post_response = requests.post(url,data=post_params,headers=headerdata).json()
-    #     datas = post_response['Data']
-    #     for data in datas:
-    #         #meta数据落地
-    #         g = Getdata_v2()
-    #         g.device_type = code
-    #         g.sensor_id = data['sensorId']
-    #         g.sensor_name = data['sensorName']
-    #         g.point_type = data['pointType']
-    #         g.point_type_name = data['pointTypeName']
-    #         g.point_id = data['pointId']
-    #         g.point_name = data['pointName']
-    #         g.address = data['address']
-    #         g.photo_url = data['photoUrl']
-    #         g.build_time = data['buildTime']
-    #         g.lng = data['lng']
-    #         g.lat = data['lat']
-    #         g.floor = data['floor']
-    #         g.region_id = data['regionId']
-    #         g.region_name = data['regionName']
-    #         g.piece_id = data['pieceId']
-    #         g.piece_name = data['pieceName']
-    #         g.committee_id = data['committeeId']
-    #         g.committee_name = data['committeeName']
-    #         g.verdor_id = data['vendorID']
-    #         g.verdor_name = data['vendorName']
-    #         g.app_classify_id = data['appClassifyId']
-    #         g.app_classify_name = data['appClassifyName']
-    #         g.save()
+        post_response = requests.post(url,data=post_params,headers=headerdata).json()
+        datas = post_response['Data']
+        for data in datas:
+            #meta数据落地
+            g = Getdata_v2()
+            g.device_type = code
+            g.sensor_id = data['sensorId']
+            g.sensor_name = data['sensorName']
+            g.point_type = data['pointType']
+            g.point_type_name = data['pointTypeName']
+            g.point_id = data['pointId']
+            g.point_name = data['pointName']
+            g.address = data['address']
+            g.photo_url = data['photoUrl']
+            g.build_time = data['buildTime']
+            g.lng = data['lng']
+            g.lat = data['lat']
+            g.floor = data['floor']
+            g.region_id = data['regionId']
+            g.region_name = data['regionName']
+            g.piece_id = data['pieceId']
+            g.piece_name = data['pieceName']
+            g.committee_id = data['committeeId']
+            g.committee_name = data['committeeName']
+            g.verdor_id = data['vendorID']
+            g.verdor_name = data['vendorName']
+            g.app_classify_id = data['appClassifyId']
+            g.app_classify_name = data['appClassifyName']
+            g.save()
 
-    #         # 2.类型解析 类型数量解析
-    #         e = Equipment_type.objects.filter(type_id=code).first()
-    #         if not e:
-    #             e_t = Equipment_type()
-    #             e_t.name = names[codes.index(code)]
-    #             e_t.type_id = code
-    #             e_t.count = 1
-    #             e_t.save()
-    #         else :
-    #             e.count += 1
-    #             e.save()
-    #             print(e.name+'类型传感器数量增加到：'+str(e.count))
-    #         #3.区域解析
-    #         b_ex = Block.objects.filter(area_id=data['pieceId'],street_id=data['regionId'],village_id=data['committeeId']).first()
-    #         if not b_ex:
-    #             block = Block()
-    #             block.area_id = data['pieceId']
-    #             block.area_name = data['pieceName']
-    #             block.street_id = data['regionId']
-    #             block.street_name = data['regionName']
-    #             block.village_id = data['committeeId']
-    #             block.village_name = data['committeeName']
-    #             block.save()
-    #         #4.解析为传感器信息
-    #         e = Equipment.objects.filter(sensor_id=data['sensorId']).first()
-    #         if not e:
-    #             e_new = Equipment()
-    #             e_new.sensor_id = data['sensorId']
-    #             e_new.sensor_name = data['sensorName']
-    #             e_new.point_type = data['pointType']
-    #             e_new.point_type_name = data['pointTypeName']
-    #             e_new.point_id = data['pointId']
-    #             e_new.point_name = data['pointName']
-    #             e_new.address = data['address']
-    #             e_new.build_time = data['buildTime']
-    #             e_new.lat = data['lat']
-    #             e_new.lng = data['lng']
-    #             e_new.floor = data['floor']
-    #             e_new.region_id = data['regionId']
-    #             e_new.region_name = data['regionName']
-    #             e_new.piece_id = data['pieceId']
-    #             e_new.piece_name = data['pieceName']
-    #             e_new.committee_id = data['committeeId']
-    #             e_new.committee_name = data['committeeName']
-    #             e_new.equipment_type= Equipment_type.objects.filter(type_id=code).first()
-    #             e_new.save()
-    #             print('新传感器:'+data['sensorId'])
+            # 2.类型解析 类型数量解析
+            e = Equipment_type.objects.filter(type_id=code).first()
+            if not e:
+                e_t = Equipment_type()
+                e_t.name = names[codes.index(code)]
+                e_t.type_id = code
+                e_t.count = 1
+                e_t.save()
+            else :
+                e.count += 1
+                e.save()
+                print(e.name+'类型传感器数量增加到：'+str(e.count))
+            #3.区域解析
+            b_ex = Block.objects.filter(area_id=data['pieceId'],street_id=data['regionId'],village_id=data['committeeId']).first()
+            if not b_ex:
+                block = Block()
+                block.area_id = data['pieceId']
+                block.area_name = data['pieceName']
+                block.street_id = data['regionId']
+                block.street_name = data['regionName']
+                block.village_id = data['committeeId']
+                block.village_name = data['committeeName']
+                block.save()
+            #4.解析为传感器信息
+            e = Equipment.objects.filter(sensor_id=data['sensorId']).first()
+            if not e:
+                e_new = Equipment()
+                e_new.sensor_id = data['sensorId']
+                e_new.sensor_name = data['sensorName']
+                e_new.point_type = data['pointType']
+                e_new.point_type_name = data['pointTypeName']
+                e_new.point_id = data['pointId']
+                e_new.point_name = data['pointName']
+                e_new.address = data['address']
+                e_new.build_time = data['buildTime']
+                e_new.lat = data['lat']
+                e_new.lng = data['lng']
+                e_new.floor = data['floor']
+                e_new.region_id = data['regionId']
+                e_new.region_name = data['regionName']
+                e_new.piece_id = data['pieceId']
+                e_new.piece_name = data['pieceName']
+                e_new.committee_id = data['committeeId']
+                e_new.committee_name = data['committeeName']
+                e_new.equipment_type= Equipment_type.objects.filter(type_id=code).first()
+                e_new.save()
+                print('新传感器:'+data['sensorId'])
 
     # #带时间参数测试
     # url = 'http://47.97.210.144/brain2/usersystem/user/login.do'
@@ -1652,133 +1652,165 @@ def analysis(request):
     # datas = post_response['Data']
     # print(datas)
 
-    #正式环境的测试
-    url = 'http://47.97.210.144/brain2/usersystem/user/login.do'
-    platformId = 1
-    password = 'fire123456'
-    # md加密
-    p1 = hashlib.md5()
-    p1.update(password.encode(encoding='utf-8'))
 
-    login_params = {
-        'platformId': platformId,
-        'loginName': 'fire',
-        'password': p1.hexdigest(),
-    }
 
-    login_response = requests.post(url, params=login_params).json()
+    # #正式环境的测试
+    # url = 'http://47.97.210.144/brain2/usersystem/user/login.do'
+    # platformId = 1
+    # password = 'fire123456'
+    # # md加密
+    # p1 = hashlib.md5()
+    # p1.update(password.encode(encoding='utf-8'))
 
-    token = ''
-    for key, value in login_response.items():
-        if key == 'Data':
-            for k, v in value.items():
-                if isinstance(v, dict):
-                    for k, v in v.items():
-                        if k == 'Authenticator':
-                            token = v
+    # login_params = {
+    #     'platformId': platformId,
+    #     'loginName': 'fire',
+    #     'password': p1.hexdigest(),
+    # }
 
-    print(token)
+    # login_response = requests.post(url, params=login_params).json()
 
-    url = 'http://47.97.210.144/brain2/fire/getSensorList.do'
-    post_params = {
-        'type': 7,
-        'Authenticator': token,
-    }
+    # token = ''
+    # for key, value in login_response.items():
+    #     if key == 'Data':
+    #         for k, v in value.items():
+    #             if isinstance(v, dict):
+    #                 for k, v in v.items():
+    #                     if k == 'Authenticator':
+    #                         token = v
 
-    post_response = requests.post(url, params=post_params).json()
-    print(post_response)
-    for data in post_response:
-        getdata = Getdata()
-        getdata.account_id = data['accountId']
-        getdata.account_name = data['accountName']
-        getdata.address = data['address']
-        getdata.belonged_account = data['belongedAccount']
-        getdata.belonged_account_group_id = data['belongedAccountGroupId']
-        getdata.belonged_account_group_id_name = data['belongedAccountGroupName']
-        getdata.build_time = data['buildTime']
-        getdata.cluster = data['cluster']
-        getdata.committee_id = data['committeeId']
-        getdata.committee_name = data['committeeName']
-        getdata.create_time = data['createTime']
-        getdata.create_user = data['createUser']
-        getdata.height = data['height']
-        getdata.high = data['high']
-        getdata.image_url = data['imageUrl']
-        getdata.is_available = data['isAvailable']
-        getdata.lat = data['lat']
-        getdata.lng = data['lng']
-        getdata.location = data['location']
-        getdata.photo_url = data['photoUrl']
-        getdata.piece_id = data['pieceId']
-        getdata.piece_name = data['pieceName']
-        getdata.point_id = data['pointId']
-        getdata.point_type = data['pointType']
-        getdata.received_time = data['received_time']
-        getdata.region_id = data['regionId']
-        getdata.region_name = data['regionName']
-        getdata.sensor_id = data['sensorId']
-        getdata.sensor_name = data['sensorName']
-        getdata.sensor_number = data['sensorNumber']
-        getdata.sensor_point_id = data['sensorPointId']
-        getdata.sensor_type = data['sensorType']
-        getdata.size = data['size']
-        getdata.source = data['source']
-        getdata.status = data['status']
-        getdata.g_type = data['sourceType']
-        getdata.updata_time = data['updateTime']
-        getdata.update_user = data['updateUser']
-        getdata.video_url = data['videoUrl']
-        getdata.water_type = data['waterType']
-        getdata.save()
+    # print(token)
 
-        # 类型解析
-        Equipment_type.objects.all().delete()
-        e = Equipment_type.objects.filter(type_id=data['sensorType']).first()
-        if not e:
-            e_t = Equipment_type()
-            e_t.type_id = data['sensorType']
-            e_t.imageUrl = data['imageUrl']
-            e_t.height = data['height']
-            e_t.count = 1
-            e_t.save()
-        else :
-            a = e.count 
-            a += 1
-            e.count = a
-            print(e.count)
-            e.save()
+    # url = 'http://47.97.210.144/brain2/fire/getSensorList.do'
+    # post_params = {
+    #     'type': 1,
+    #     'Authenticator': token,
+    # }
+
+    # post_response = requests.post(url, params=post_params).json()
+    # print(post_response)
+    # for data in post_response:
+    #     getdata = Getdata()
+    #     getdata.account_id = data['accountId']
+    #     getdata.account_name = data['accountName']
+    #     getdata.address = data['address']
+    #     getdata.belonged_account = data['belongedAccount']
+    #     getdata.belonged_account_group_id = data['belongedAccountGroupId']
+    #     getdata.belonged_account_group_id_name = data['belongedAccountGroupName']
+    #     getdata.build_time = data['buildTime']
+    #     getdata.cluster = data['cluster']
+    #     getdata.committee_id = data['committeeId']
+    #     getdata.committee_name = data['committeeName']
+    #     getdata.create_time = data['createTime']
+    #     getdata.create_user = data['createUser']
+    #     getdata.height = data['height']
+    #     getdata.high = data['high']
+    #     getdata.image_url = data['imageUrl']
+    #     getdata.is_available = data['isAvailable']
+    #     getdata.lat = data['lat']
+    #     getdata.lng = data['lng']
+    #     getdata.location = data['location']
+    #     getdata.photo_url = data['photoUrl']
+    #     getdata.piece_id = data['pieceId']
+    #     getdata.piece_name = data['pieceName']
+    #     getdata.point_id = data['pointId']
+    #     getdata.point_type = data['pointType']
+    #     getdata.received_time = data['received_time']
+    #     getdata.region_id = data['regionId']
+    #     getdata.region_name = data['regionName']
+    #     getdata.sensor_id = data['sensorId']
+    #     getdata.sensor_name = data['sensorName']
+    #     getdata.sensor_number = data['sensorNumber']
+    #     getdata.sensor_point_id = data['sensorPointId']
+    #     getdata.sensor_type = data['sensorType']
+    #     getdata.size = data['size']
+    #     getdata.source = data['source']
+    #     getdata.status = data['status']
+    #     getdata.g_type = data['sourceType']
+    #     getdata.updata_time = data['updateTime']
+    #     getdata.update_user = data['updateUser']
+    #     getdata.video_url = data['videoUrl']
+    #     getdata.water_type = data['waterType']
+    #     getdata.save()
+
+    #     # 类型解析
+    #     Equipment_type.objects.all().delete()
+    #     e = Equipment_type.objects.filter(type_id=data['sensorType']).first()
+    #     if not e:
+    #         e_t = Equipment_type()
+    #         e_t.type_id = data['sensorType']
+    #         e_t.imageUrl = data['imageUrl']
+    #         e_t.height = data['height']
+    #         e_t.count = 1
+    #         e_t.save()
+    #     else :
+    #         a = e.count 
+    #         a += 1
+    #         e.count = a
+    #         print(e.count)
+    #         e.save()
         
 
-        #物品解析
-        e = Equipment.objects.filter(sensor_id=data['sensorId']).first()
-        if not e:
-            e_new = Equipment()
-            e_new.e_id = data['sensorId']
-            e_new.name = data['sensorName']
-            e_new.area = data['pieceId']
-            e_new.street = data['regionId']
-            e_new.village = data['committeeId']
-            e_new.address = data['address']
-            e_new.location_x = data['lat']
-            e_new.location_y = data['lng']
-            e_new.equipment_type = Equipment_type.objects.filter(type_id=data['sensorType']).first()
-            e_new.save()
-            print(getdata.sensor_point_id)
+    #     #物品解析
+    #     e = Equipment.objects.filter(sensor_id=data['sensorId']).first()
+    #     if not e:
+    #         e_new = Equipment()
+    #         e_new.e_id = data['sensorId']
+    #         e_new.name = data['sensorName']
+    #         e_new.area = data['pieceId']
+    #         e_new.street = data['regionId']
+    #         e_new.village = data['committeeId']
+    #         e_new.address = data['address']
+    #         e_new.location_x = data['lat']
+    #         e_new.location_y = data['lng']
+    #         e_new.equipment_type = Equipment_type.objects.filter(type_id=data['sensorType']).first()
+    #         e_new.save()
+    #         print(getdata.sensor_point_id)
 
-        #区域解析
-        b_ex = Block.objects.filter(street_id=data['regionId'],village_id=data['committeeId']).first()
-        if not b_ex:
-            block = Block()
-            block.area_id = data['pieceId']
-            block.area_name = data['pieceName']
-            block.street_id = data['regionId']
-            block.street_name = data['regionName']
-            block.village_id = data['committeeId']
-            block.village_name = data['committeeName']
-            block.save()
-        print(data['sensorPointId'])
+    #     #区域解析
+    #     b_ex = Block.objects.filter(street_id=data['regionId'],village_id=data['committeeId']).first()
+    #     if not b_ex:
+    #         block = Block()
+    #         block.area_id = data['pieceId']
+    #         block.area_name = data['pieceName']
+    #         block.street_id = data['regionId']
+    #         block.street_name = data['regionName']
+    #         block.village_id = data['committeeId']
+    #         block.village_name = data['committeeName']
+    #         block.save()
+    #     print(data['sensorPointId'])
 
 
+
+
+
+    # import json
+    # import urllib.request
+
+    # user_agent = "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.7) Gecko/2009021910 Firefox/3.0.7"
+
+    # url = "http://api.usatoday.com/open/articles/topnews?encoding=json&api_key=98jv5a93qs"
+
+    # headers={"User-Agent":user_agent,} 
+
+    # request = urllib.request.Request(url, None, headers)
+    # parsed_json = json.loads(str(request))
+
+    # request = urllib.request.Request(url, None, headers)
+    # res = urllib.request.urlopen(request)
+    # parsed_json = json.loads(res.readall())
+
+    # for i in range(6):
+    # title = parsed_json['stories'][i]['title']
+    # link = parsed_json['stories'][i]['link']
+    # print(title)
+    # print(link)
+    # print("-----------------------------------")
+
+
+   
+
+ 
 
     ctx['message'] = message = 'success'
     return render(request,'analysis.html',ctx)
