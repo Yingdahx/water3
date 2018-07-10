@@ -32,7 +32,12 @@ urlpatterns = [
     #警报
     path('all/',views.all),
     #6个模块
-    path('',views.web_login),
+    #社区页面
+    path('',views.com_login),
+    path('com_login/',views.com_login),
+    path('com_index/',views.com_index),
+    path('information/',views.information),
+    #
     path('index/',views.index),
     path('day/',views.day),
     path('police_day/',views.police_day),

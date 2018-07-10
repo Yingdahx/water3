@@ -3041,3 +3041,15 @@ def web_login(request):
     ctx['err'] = err ='该用户不存在'
     return render(request,'web_login.html',ctx)
 
+def com_login(request):
+    ctx = {}
+    return render(request,'com_login.html',ctx)
+
+def com_index(request):
+    ctx = {}
+    return render(request,'com_index.html',ctx)
+
+def information(request):
+    ctx= {}
+    return render(request,'information.html',ctx)
+

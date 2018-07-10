@@ -1,0 +1,64 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=1200" />
+<title>登录</title>
+<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+</head>
+
+<body  class="white_body">
+
+<div class="login_box">
+
+	<img src="{% static 'images/title_logo1.png' %}" class="logo_img">
+
+	<div class="login_heard">
+    
+    	<h1>用户登录</h1>
+    
+    	<div class="name">
+        
+        	<img src="{% static 'images/phone.png' %}" width="36px" >
+            
+            <input id="loginname" type="text" class="itxt" name="loginname" tabindex="1" autocomplete="off" placeholder="请输入手机号码"  >
+        
+        </div>
+        
+        <div class="name">
+        
+        	<img src="{% static 'images/password.png' %}" width="36px">
+            
+            <input id="loginname" type="text" class="itxt" name="loginname" tabindex="1" autocomplete="off" placeholder="请输入密码"   >
+        
+        </div>
+        
+        <div class="forget-password">
+        
+        	<input type="checkbox" name="rememberMe" id="rememberMe" value="true" checked="checked" class="auto-login" tabindex="4">
+            
+            <p>记住密码</p>
+        
+        </div>
+        
+        <a href="/com_index/"><div class="login-btn">立即登录</div></a>
+    
+    </div>
+    
+    <a href="">
+    <div class="property">
+    
+    	<img src="{% static 'images/wuye.png' %}">
+    
+    	<p>物业登录</p>
+    
+    </div>
+    </a>
+
+</div>
+
+</body>
+</html>
