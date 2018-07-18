@@ -1,0 +1,68 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=1200" />
+<title>登录</title>
+<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+<!-- <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> -->
+</head>
+
+<body  class="white_body">
+{% if error %}<p class="alert alert-danger">{{ error }}</p>{% endif %}
+<div class="login_box">
+
+	<img src="{% static 'images/title_logo1.png' %}" class="logo_img">
+    <form action="" class="myform" method="POST">
+        {% csrf_token %}
+	<div class="login_heard" >
+    
+    	<h1>用户登录</h1>
+    
+    	<div class="name">
+        
+        	<img src="{% static 'images/phone.png' %}" width="36px" >
+            
+            <input id="phone" type="text" class="itxt" name="phone" tabindex="1" autocomplete="off" placeholder="请输入手机号码"  value="{% if error %}{{phone}}{% endif %}">
+            
+        </div>
+        
+        <div class="name">
+        
+        	<img src="{% static 'images/password.png' %}" width="36px">
+            
+            <input id="password" type="password" class="itxt" name="password" tabindex="1" autocomplete="off" placeholder="请输入密码"   value="{% if error %}{{password}}{% endif %}">
+            
+        </div>
+        
+        <div class="forget-password">
+        
+        	<input type="checkbox" name="rememberMe" id="rememberMe" value="true" checked="checked" class="auto-login" tabindex="4">
+            
+            <p>记住密码</p>
+        
+        </div>
+        
+        <input type="submit" name="" class="login-btn" value="立即登录" style="border: 0px;margin-left: 10%;font-size: 14px;">
+    
+    </div>
+    </form>
+    <a href="">
+    <div class="property">
+    
+    	<img src="{% static 'images/wuye.png' %}">
+    
+    	<p>物业登录</p>
+    
+    </div>
+    </a>
+
+</div>
+
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</html>

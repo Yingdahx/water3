@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, get_list_or_404
+from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect
 from django.http import HttpResponse, JsonResponse, HttpRequest
 from django.views.decorators.csrf import csrf_exempt
 from django.db.utils import IntegrityError
@@ -7,7 +7,7 @@ from django.db.models import Model
 from django.db import transaction,connection
 from django.utils import timezone
 from django.conf import settings
-
+from .models import Member
 from django.utils.timezone import now, timedelta
 
 import os
@@ -3040,4 +3040,41 @@ def web_login(request):
             return render(request,'web_login.html',ctx)
     ctx['err'] = err ='该用户不存在'
     return render(request,'web_login.html',ctx)
+@csrf_exempt
+def com_login(request):
+
+    ctx = {}
+
+    if request.method == 'POST':
+
+        phone = request.POST.get('phone', '')
+        password = request.POST.get('password', '')
+        member_user = Member.objects.filter(phone=phone, password=password).first()
+        if not member_user:
+            ctx['error'] = '用户名密码错误'
+            ctx['phone'] = phone
+            ctx['password'] = password
+            return render(request, 'com_login.html', ctx)
+
+        request.session['member_user_id'] = member_user.id
+        return redirect(com_index)
+    return render(request,'com_login.html',ctx)
+
+def check_login(request):
+    if 'member_user_id' not in request.session:
+        return None
+    member_user_id = request.session['member_user_id']
+    return Member.objects.filter(id=member_user_id).first()
+
+def com_index(request):
+    member_user = check_login(request)
+    if not member_user:
+        return redirect(com_login)
+    ctx = {}
+
+    return render(request,'com_index.html',ctx)
+
+def information(request):
+    ctx= {}
+    return render(request,'information.html',ctx)
 
