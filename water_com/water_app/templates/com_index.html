@@ -33,7 +33,7 @@ document.execCommand("BackgroundImageCache", false, true);
                     
                         <a href="###">
         
-                        	<img src="{% static 'images/icon/admin.png' %}" alt="消息">
+                        	<img src="{{icon.url}}" alt="消息" style="height: 30px;width: 30px;">
                         
                         </a>
 	
@@ -49,7 +49,7 @@ document.execCommand("BackgroundImageCache", false, true);
 	
     							<p ><a href="#">意见反馈</a></p>
 	
-    							<p><a href="/com_login/" >退出</a></p>
+    							<p><a href="/login_out/" >退出</a></p>
                                 	
     						</div>
 	
@@ -57,7 +57,7 @@ document.execCommand("BackgroundImageCache", false, true);
 	
     					</div>
      
-                         <a href="###">admin</a></li>
+                         <a href="###">{{name}}</a></li>
                          
                 </ul>
 	

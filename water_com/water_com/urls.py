@@ -37,6 +37,7 @@ urlpatterns = [
     path('com_login/',views.com_login),
     path('com_index/',views.com_index),
     path('information/',views.information),
+    path('login_out', views.login_out),
     #
     path('index/',views.index),
     path('day/',views.day),

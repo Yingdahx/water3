@@ -3071,10 +3071,15 @@ def com_index(request):
     if not member_user:
         return redirect(com_login)
     ctx = {}
-
+    ctx['name'] = member_user.name
+    ctx['icon'] = member_user.icon
     return render(request,'com_index.html',ctx)
 
 def information(request):
     ctx= {}
     return render(request,'information.html',ctx)
 
+def login_out(request):
+    if 'member_user_id' in request.session:
+        del request.session['member_user_id']
+    return redirect(com_login)
