@@ -3078,3 +3078,15 @@ def information(request):
     ctx= {}
     return render(request,'information.html',ctx)
 
+def com_login(request):
+    ctx = {}
+    return render(request,'com_login.html',ctx)
+
+def com_index(request):
+    ctx = {}
+    return render(request,'com_index.html',ctx)
+
+def information(request):
+    ctx= {}
+    return render(request,'information.html',ctx)
+

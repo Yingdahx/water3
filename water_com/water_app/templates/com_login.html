@@ -8,6 +8,7 @@
 <meta name="viewport" content="width=1200" />
 <title>登录</title>
 <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+<<<<<<< HEAD
 <!-- <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> -->
 </head>
 
@@ -28,14 +29,16 @@
             
             <input id="phone" type="text" class="itxt" name="phone" tabindex="1" autocomplete="off" placeholder="请输入手机号码"  value="{% if error %}{{phone}}{% endif %}">
             
+
         </div>
         
         <div class="name">
         
         	<img src="{% static 'images/password.png' %}" width="36px">
-            
+
             <input id="password" type="password" class="itxt" name="password" tabindex="1" autocomplete="off" placeholder="请输入密码"   value="{% if error %}{{password}}{% endif %}">
             
+
         </div>
         
         <div class="forget-password">
@@ -64,5 +67,5 @@
 
 </body>
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </html>
