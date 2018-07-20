@@ -3066,17 +3066,26 @@ def check_login(request):
     member_user_id = request.session['member_user_id']
     return Member.objects.filter(id=member_user_id).first()
 
-def com_index(request):
+def jk(request):
     member_user = check_login(request)
     if not member_user:
         return redirect(com_login)
     ctx = {}
     ctx['name'] = member_user.name
     ctx['icon'] = member_user.icon
-    return render(request,'com_index.html',ctx)
+    # 搜索功能
+    if request.method == 'POST':
+        q = request.POST.get('h_search_text', '')
+        print(q)
+    return render(request,'jk.html',ctx)
 
 def information(request):
-    ctx= {}
+    member_user = check_login(request)
+    if not member_user:
+        return redirect(com_login)
+    ctx = {}
+    ctx['name'] = member_user.name
+    ctx['icon'] = member_user.icon
     return render(request,'information.html',ctx)
 
 def login_out(request):
@@ -3084,4 +3093,54 @@ def login_out(request):
         del request.session['member_user_id']
     return redirect(com_login)
 
+def fkvj(request):
+    ctx = {}
+    return render(request, 'fkvj.html', ctx)
 
+def grzx(request):
+    ctx = {}
+    return render(request, 'grzx.html', ctx)
+
+def index(request):
+    ctx = {}
+    return render(request, 'index.html', ctx)
+
+def sbgl(request):
+    ctx = {}
+    return render(request, 'sbgl.html', ctx)
+
+def summary(request):
+    ctx = {}
+    return render(request, 'summary.html', ctx)
+
+def xjjh_increase(request):
+    ctx = {}
+    return render(request, 'xjjh_increase.html', ctx)
+
+def xjjh_modify(request):
+    ctx = {}
+    return render(request, 'xjjh_modify.html', ctx)
+
+def xjjh(request):
+    ctx = {}
+    return render(request, 'xjjh.html', ctx)
+
+def xjrl(request):
+    ctx = {}
+    return render(request, 'xjrl.html', ctx)
+
+def yhcl(request):
+    ctx = {}
+    return render(request, 'yhcl.html', ctx)
+
+def yhgl(request):
+    ctx = {}
+    return render(request, 'yhgl.html', ctx)
+
+def yhjl(request):
+    ctx = {}
+    return render(request, 'yhjl.html', ctx)
+
+def zhsz(request):
+    ctx = {}
+    return render(request, 'zhsz.html', ctx)
