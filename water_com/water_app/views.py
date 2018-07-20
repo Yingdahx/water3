@@ -3057,7 +3057,7 @@ def com_login(request):
             return render(request, 'com_login.html', ctx)
 
         request.session['member_user_id'] = member_user.id
-        return redirect(com_index)
+        return redirect(index)
     return render(request,'com_login.html',ctx)
 
 def check_login(request):
