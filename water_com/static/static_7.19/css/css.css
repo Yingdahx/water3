@@ -583,16 +583,16 @@ ul.pagination li a:hover:not(.active) {background-color: #225b8b; color: white}
 .black_overlay_bg { 
  background-color: white;
   position: absolute;
- top: 27%;
+ top: 250px; 
  left: 35%;
- width: 30%; 
+ width: 500px; 
  z-index: 1003;
 }
-.black_overlay_bg h1{ font-size:20px;  line-height:92px;}
+.black_overlay_bg h1{ font-size:20px;  line-height:70px;}
 .white_content {
  display: none;
  position: absolute;
- top: 27%;
+ top: 250px; 
  left: 35%;
  width: 500px; 
  background-color: white;
