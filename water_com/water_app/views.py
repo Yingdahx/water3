@@ -3144,3 +3144,7 @@ def yhjl(request):
 def zhsz(request):
     ctx = {}
     return render(request, 'zhsz.html', ctx)
+
+def bj(request):
+    ctx = {}
+    return render(request, 'bj.html', ctx)

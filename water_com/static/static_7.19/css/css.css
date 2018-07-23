@@ -548,7 +548,7 @@ ul.pagination li a:hover:not(.active) {background-color: #225b8b; color: white}
 .increase_box h1{width: 83px;text-align: right;}
 .increase_box select{ width:312px; height:32px;margin-left:12px;}
 .screen_time select{ width:90px; height:32px;}
-.button{ width:60px; height:30px; background-color:#0a63c0; border:none; float:left; margin-left:12px; color:#FFFFFF;}
+.button{ height:30px; background-color:#0a63c0; border:none; float:left; margin-left:12px; color:#FFFFFF;}
 .button:hover{ background-color:#115fb1}
 
 .operation{ overflow:hidden}
@@ -569,6 +569,7 @@ ul.pagination li a:hover:not(.active) {background-color: #225b8b; color: white}
 #Button1:hover{background-color:#0a63c0; color:#fff; transition:0.3s;border:1px solid #4993e0; }
 #Button2{background-color:#4993e0; color:#FFFFFF; margin-right:6px;  height:30px; line-height:30px; border:none;border-radius:2px;}
 #Button2:hover{background-color:#0a63c0;}
+.weixiu{border:none;line-height: 30px;padding: 2px 0;    margin-right: 6px; color: #F04212;}
 .black_overlay{
  display: none;
  position: absolute;

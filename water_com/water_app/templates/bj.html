@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=1200" />
-<title>隐患管理</title>
+<title>报警</title>
 <link rel="stylesheet" type="text/css" href="/static/static_7.19/css/css.css">
 <!--[if IE 6]>
 <script type="text/javascript">
@@ -280,85 +280,9 @@ document.execCommand("BackgroundImageCache", false, true);
 	
                     <div class="white_bj">
                 
-                        <h4 class="gray_th_b">隐患巡查</h4>
+                        <h4 class="gray_th_b">报警</h4>
                         
-                        <div class="screen_box">
-                        
-                            <div class="screen_type">
-                            
-                            	<h1>隐患类型：</h1>
-                                
-                                <ul>
-                                
-                                	<li>报警</li>
-                                    
-                                    <li>故障</li>
-                                
-                                </ul>
-                            
-                            </div>
-                            
-                            <div class="screen_search">
-                            
-                            	<h1>创建时间 ：</h1> 
-                  				
-                  				<input size="16" type="text"  class="form_datetime" value="开始时间">
-                                
-                  				<input size="16" type="text"   class="form_datetime" value="结束时间">
-                                
-                                <div class="screen_time">
-                                
-                                    <h1>项目：</h1> 
-                                    
-                                    <select  class="search_projectid">
-                                  
-                                        <option value=""> </option>
-                                      
-                                        <option value="201712160002"> 卓顺塑模智慧用电项目 </option>
-                                      
-                                        <option value="201712160004"> 盈盛汽车配件智慧用电项目 </option> 
-                                  
-                                    </select>
-                                
-                                </div>
-                                
-                                <div class="screen_time">
-                                
-                                    <h1>设备识别号：</h1> 
-                                    
-                                    <select class="search_projectid">
-                                  
-                                        <option value="">568545</option>
-                                      
-                                        <option value="201712160002">568545</option>
-                                      
-                                        <option value="201712160004">568545</option> 
-                                  
-                                    </select>
-                                
-                                </div>
-                                
-                                <div class="screen_time">
-                                
-                                    <h1>区域：</h1> 
-                                    
-                                    <select  id="search_projectid">
-                                  
-                                        <option value="">浦东新区</option>
-                                      
-                                        <option value="201712160002">徐汇区</option>
-                                      
-                                        <option value="201712160004">静安区</option> 
-                                  
-                                    </select>
-                                
-                                </div>
-                                
-                                <input class="button" value="搜索" type="button">
-                            
-                            </div>
-                        
-                        </div>
+                         <br/>
                         
                         <div class="week">
             
@@ -390,7 +314,7 @@ document.execCommand("BackgroundImageCache", false, true);
                                     
                                     </tr>
                                    
-                                    <tr>
+									<tr>
                                    
                                         <td>报警</td>
                                         
@@ -414,133 +338,9 @@ document.execCommand("BackgroundImageCache", false, true);
                                         
                                         	<ul>
                                             
-                                            	<input id="Button1" type="button" value="处理" onclick="ShowDiv('MyDiv','fade')" />
+                                            	<input id="Button1" type="button" value="真火警" onclick="ShowDiv('MyDiv','fade')" />
                                                 
-                                                <input id="Button2" type="button" value="确定" onclick="ShowDiv('fade')" />
-                                                
-                                                <!--弹出层时背景层DIV-->
-                                                <script type="text/javascript">
-												//弹出隐藏层
-												function ShowDiv(show_div,bg_div){
-												 document.getElementById(show_div).style.display='block';
-												 document.getElementById(bg_div).style.display='block' ;
-												 var bgdiv = document.getElementById(bg_div);
-												 bgdiv.style.width = document.body.scrollWidth; 
-												 // bgdiv.style.height = $(document).height();
-												 $("#"+bg_div).height($(document).height());
-												};
-												//关闭弹出层
-												function CloseDiv(show_div,bg_div)
-												{
-												 document.getElementById(show_div).style.display='none';
-												 document.getElementById(bg_div).style.display='none';
-												};
-												</script>
-                                                <div id="fade" class="black_overlay">
-                                                
-                                                	<div class="black_overlay_bg">
-                                                
-                                                        <h1>确认此操作吗，此操作不可逆。</h1>
-                                                        
-                                                        <div class="czqd">
-                                                            
-                                                                <span style="  margin-right:10px; padding: 6px 20px; border:1px solid #0a63c0;" onclick="CloseDiv('MyDiv','fade')">取消</span>
-    
-                                                                <span style="  margin-right:10px; background-color:#0a63c0; padding: 6px 20px; color:#FFFFFF; " onclick="CloseDiv('MyDiv','fade')">确定</span>
-                                                          
-                                                            </div>
-                                                        
-													</div>
-                                                    
-                                                </div>
-                                              
-                                                 <div id="MyDiv" class="white_content">
-                                              
-                                                      <div style="text-align: left; cursor: default; height: 40px; padding-left:1.5em; background-color:#2166ac; color:#FFFFFF; margin-bottom:20px;">
-                                                      
-                                                      	<div>处理异常情况</div>
-
-                                                      </div>
-                                              
-                                                  	  <div>
-                                                      
-                                                      	<div class="Handle_name">
-                                                        
-                                                        	<p>姓名：</p>
-                                                            
-                                                            <input  type="txt" value="请输入处理人姓名" />
-                                                        
-                                                        </div>
-                                                        
-                                                        <div class="Handle_name">
-                                                        
-                                                        	<p>联系方式：</p>
-                                                            
-                                                            <input  type="txt" value="请输入联系方式" />
-                                                        
-                                                        </div>
-                                                        
-                                                        <div class="Handle_name">
-                                                        
-                                                        	<p>报警地址：</p>
-                                                            
-                                                            <input  type="txt" value="请输入报警地址" />
-                                                        
-                                                        </div>
-                                                        
-                                                        <div class="Handle_name">
-                                                        
-                                                        	<p>备注信息：</p>
-                                                            
-                                                            <textarea name="txt" clos=",50" rows="5" warp="virtual"></textarea>
-                                                        
-                                                        </div>
-                                                        
-                                                        <div class="czqd">
-                                                        
-															<span style="  margin-right:10px; padding: 6px 20px; border:1px solid #0a63c0;" onclick="CloseDiv('MyDiv','fade')">取消</span>
-
-                                                        	<span style="  margin-right:10px; background-color:#0a63c0; padding: 6px 20px; color:#FFFFFF; " onclick="CloseDiv('MyDiv','fade')">确定</span>
-                                                      
-                                                      	</div>
-                                                      
-                                                      </div>
-                                              
-                                                 </div>
-                                            
-                                            </ul>
-                                        
-                                        </td> 
-                                   
-                                    </tr>   
-                                    
-                                    <tr>
-                                   
-                                        <td>报警</td>
-                                        
-                                        <td>2018/7/17 14:36:31</td>
-                                        
-                                        <td>寿光市亿龙食品股份有限公司</td>
-                                        
-                                        <td>87036594400</td>
-                                        
-                                        <td>GSM200</td>
-                                        
-                                        <td>1</td>
-                                        
-                                        <td>2#</td>
-                                        
-                                        <td>单冻机速冻库</td>
-                                        
-                                        <td>欠压:Ua196.2,Ub196.3,Uc170.8;</td>
-                                        
-                                        <td class="operation">
-                                        
-                                        	<ul>
-                                            
-                                            	<input id="Button1" type="button" value="处理" onclick="ShowDiv('MyDiv','fade')" />
-                                                
-                                                <input id="Button2" type="button" value="确定" onclick="ShowDiv('fade')" />
+                                                <input id="Button2" type="button" value="假火警" onclick="ShowDiv('fade')" />
                                                 
                                                 <!--弹出层时背景层DIV-->
                                                 <script type="text/javascript">
@@ -564,13 +364,13 @@ document.execCommand("BackgroundImageCache", false, true);
                                                 
                                                 	<div class="black_overlay_bg">
                                                 
-                                                        <h1>确认此操作吗，此操作不可逆。</h1>
+                                                        <h1>确认为假火警。完成操作</h1>
                                                         
                                                         <div class="czqd">
                                                             
-                                                                <span style="  margin-right:10px; padding: 6px 20px; border:1px solid #0a63c0;" onclick="CloseDiv('MyDiv','fade')">取消</span>
+                                                                <span style="  margin-right:10px; padding: 6px 20px; border:1px solid #0a63c0;" onclick="CloseDiv('MyDiv','fade')">复位</span>
     
-                                                                <span style="  margin-right:10px; background-color:#0a63c0; padding: 6px 20px; color:#FFFFFF; " onclick="CloseDiv('MyDiv','fade')">确定</span>
+                                                                <span style="  margin-right:10px; background-color:#0a63c0; padding: 6px 20px; color:#FFFFFF; " onclick="CloseDiv('MyDiv','fade')">误报</span>
                                                           
                                                             </div>
                                                         
@@ -582,7 +382,7 @@ document.execCommand("BackgroundImageCache", false, true);
                                               
                                                       <div style="text-align: left; cursor: default; height: 40px; padding-left:1.5em; background-color:#2166ac; color:#FFFFFF; margin-bottom:20px;">
                                                       
-                                                      	<div>处理异常情况</div>
+                                                      	<div>真火警</div>
 
                                                       </div>
                                               
@@ -590,35 +390,9 @@ document.execCommand("BackgroundImageCache", false, true);
                                                       
                                                       	<div class="Handle_name">
                                                         
-                                                        	<p>姓名：</p>
-                                                            
-                                                            <input  type="txt" value="请输入处理人姓名" />
-                                                        
-                                                        </div>
-                                                        
-                                                        <div class="Handle_name">
-                                                        
-                                                        	<p>联系方式：</p>
-                                                            
-                                                            <input  type="txt" value="请输入联系方式" />
-                                                        
-                                                        </div>
-                                                        
-                                                        <div class="Handle_name">
-                                                        
-                                                        	<p>报警地址：</p>
-                                                            
-                                                            <input  type="txt" value="请输入报警地址" />
-                                                        
-                                                        </div>
-                                                        
-                                                        <div class="Handle_name">
-                                                        
-                                                        	<p>备注信息：</p>
-                                                            
-                                                            <textarea name="txt" clos=",50" rows="5" warp="virtual"></textarea>
-                                                        
-                                                        </div>
+															<div>请拨打<span>119</span>电话。</div>
+
+                                                        </div> 
                                                         
                                                         <div class="czqd">
                                                         
@@ -662,9 +436,9 @@ document.execCommand("BackgroundImageCache", false, true);
                                         
                                         	<ul>
                                             
-                                            	<input id="Button1" type="button" value="处理" onclick="ShowDiv('MyDiv','fade')" />
+                                            	<input id="Button1" type="button" value="真火警" onclick="ShowDiv('MyDiv','fade')" />
                                                 
-                                                <input id="Button2" type="button" value="确定" onclick="ShowDiv('fade')" />
+                                                <input id="Button2" type="button" value="假火警" onclick="ShowDiv('fade')" />
                                                 
                                                 <!--弹出层时背景层DIV-->
                                                 <script type="text/javascript">
@@ -688,13 +462,13 @@ document.execCommand("BackgroundImageCache", false, true);
                                                 
                                                 	<div class="black_overlay_bg">
                                                 
-                                                        <h1>确认此操作吗，此操作不可逆。</h1>
+                                                        <h1>确认为假火警。完成操作</h1>
                                                         
                                                         <div class="czqd">
                                                             
-                                                                <span style="  margin-right:10px; padding: 6px 20px; border:1px solid #0a63c0;" onclick="CloseDiv('MyDiv','fade')">取消</span>
+                                                                <span style="  margin-right:10px; padding: 6px 20px; border:1px solid #0a63c0;" onclick="CloseDiv('MyDiv','fade')">复位</span>
     
-                                                                <span style="  margin-right:10px; background-color:#0a63c0; padding: 6px 20px; color:#FFFFFF; " onclick="CloseDiv('MyDiv','fade')">确定</span>
+                                                                <span style="  margin-right:10px; background-color:#0a63c0; padding: 6px 20px; color:#FFFFFF; " onclick="CloseDiv('MyDiv','fade')">误报</span>
                                                           
                                                             </div>
                                                         
@@ -706,7 +480,7 @@ document.execCommand("BackgroundImageCache", false, true);
                                               
                                                       <div style="text-align: left; cursor: default; height: 40px; padding-left:1.5em; background-color:#2166ac; color:#FFFFFF; margin-bottom:20px;">
                                                       
-                                                      	<div>处理异常情况</div>
+                                                      	<div>真火警</div>
 
                                                       </div>
                                               
@@ -714,35 +488,9 @@ document.execCommand("BackgroundImageCache", false, true);
                                                       
                                                       	<div class="Handle_name">
                                                         
-                                                        	<p>姓名：</p>
-                                                            
-                                                            <input  type="txt" value="请输入处理人姓名" />
-                                                        
-                                                        </div>
-                                                        
-                                                        <div class="Handle_name">
-                                                        
-                                                        	<p>联系方式：</p>
-                                                            
-                                                            <input  type="txt" value="请输入联系方式" />
-                                                        
-                                                        </div>
-                                                        
-                                                        <div class="Handle_name">
-                                                        
-                                                        	<p>报警地址：</p>
-                                                            
-                                                            <input  type="txt" value="请输入报警地址" />
-                                                        
-                                                        </div>
-                                                        
-                                                        <div class="Handle_name">
-                                                        
-                                                        	<p>备注信息：</p>
-                                                            
-                                                            <textarea name="txt" clos=",50" rows="5" warp="virtual"></textarea>
-                                                        
-                                                        </div>
+															<div>请拨打<span>119</span>电话。</div>
+
+                                                        </div> 
                                                         
                                                         <div class="czqd">
                                                         
@@ -786,9 +534,9 @@ document.execCommand("BackgroundImageCache", false, true);
                                         
                                         	<ul>
                                             
-                                            	<input id="Button1" type="button" value="处理" onclick="ShowDiv('MyDiv','fade')" />
+                                            	<input id="Button1" type="button" value="真火警" onclick="ShowDiv('MyDiv','fade')" />
                                                 
-                                                <input id="Button2" type="button" value="确定" onclick="ShowDiv('fade')" />
+                                                <input id="Button2" type="button" value="假火警" onclick="ShowDiv('fade')" />
                                                 
                                                 <!--弹出层时背景层DIV-->
                                                 <script type="text/javascript">
@@ -812,13 +560,13 @@ document.execCommand("BackgroundImageCache", false, true);
                                                 
                                                 	<div class="black_overlay_bg">
                                                 
-                                                        <h1>确认此操作吗，此操作不可逆。</h1>
+                                                        <h1>确认为假火警。完成操作</h1>
                                                         
                                                         <div class="czqd">
                                                             
-                                                                <span style="  margin-right:10px; padding: 6px 20px; border:1px solid #0a63c0;" onclick="CloseDiv('MyDiv','fade')">取消</span>
+                                                                <span style="  margin-right:10px; padding: 6px 20px; border:1px solid #0a63c0;" onclick="CloseDiv('MyDiv','fade')">复位</span>
     
-                                                                <span style="  margin-right:10px; background-color:#0a63c0; padding: 6px 20px; color:#FFFFFF; " onclick="CloseDiv('MyDiv','fade')">确定</span>
+                                                                <span style="  margin-right:10px; background-color:#0a63c0; padding: 6px 20px; color:#FFFFFF; " onclick="CloseDiv('MyDiv','fade')">误报</span>
                                                           
                                                             </div>
                                                         
@@ -830,7 +578,7 @@ document.execCommand("BackgroundImageCache", false, true);
                                               
                                                       <div style="text-align: left; cursor: default; height: 40px; padding-left:1.5em; background-color:#2166ac; color:#FFFFFF; margin-bottom:20px;">
                                                       
-                                                      	<div>处理异常情况</div>
+                                                      	<div>真火警</div>
 
                                                       </div>
                                               
@@ -838,35 +586,9 @@ document.execCommand("BackgroundImageCache", false, true);
                                                       
                                                       	<div class="Handle_name">
                                                         
-                                                        	<p>姓名：</p>
-                                                            
-                                                            <input  type="txt" value="请输入处理人姓名" />
-                                                        
-                                                        </div>
-                                                        
-                                                        <div class="Handle_name">
-                                                        
-                                                        	<p>联系方式：</p>
-                                                            
-                                                            <input  type="txt" value="请输入联系方式" />
-                                                        
-                                                        </div>
-                                                        
-                                                        <div class="Handle_name">
-                                                        
-                                                        	<p>报警地址：</p>
-                                                            
-                                                            <input  type="txt" value="请输入报警地址" />
-                                                        
-                                                        </div>
-                                                        
-                                                        <div class="Handle_name">
-                                                        
-                                                        	<p>备注信息：</p>
-                                                            
-                                                            <textarea name="txt" clos=",50" rows="5" warp="virtual"></textarea>
-                                                        
-                                                        </div>
+															<div>请拨打<span>119</span>电话。</div>
+
+                                                        </div> 
                                                         
                                                         <div class="czqd">
                                                         
@@ -910,9 +632,9 @@ document.execCommand("BackgroundImageCache", false, true);
                                         
                                         	<ul>
                                             
-                                            	<input id="Button1" type="button" value="处理" onclick="ShowDiv('MyDiv','fade')" />
+                                            	<input id="Button1" type="button" value="真火警" onclick="ShowDiv('MyDiv','fade')" />
                                                 
-                                                <input id="Button2" type="button" value="确定" onclick="ShowDiv('fade')" />
+                                                <input id="Button2" type="button" value="假火警" onclick="ShowDiv('fade')" />
                                                 
                                                 <!--弹出层时背景层DIV-->
                                                 <script type="text/javascript">
@@ -936,13 +658,13 @@ document.execCommand("BackgroundImageCache", false, true);
                                                 
                                                 	<div class="black_overlay_bg">
                                                 
-                                                        <h1>确认此操作吗，此操作不可逆。</h1>
+                                                        <h1>确认为假火警。完成操作</h1>
                                                         
                                                         <div class="czqd">
                                                             
-                                                                <span style="  margin-right:10px; padding: 6px 20px; border:1px solid #0a63c0;" onclick="CloseDiv('MyDiv','fade')">取消</span>
+                                                                <span style="  margin-right:10px; padding: 6px 20px; border:1px solid #0a63c0;" onclick="CloseDiv('MyDiv','fade')">复位</span>
     
-                                                                <span style="  margin-right:10px; background-color:#0a63c0; padding: 6px 20px; color:#FFFFFF; " onclick="CloseDiv('MyDiv','fade')">确定</span>
+                                                                <span style="  margin-right:10px; background-color:#0a63c0; padding: 6px 20px; color:#FFFFFF; " onclick="CloseDiv('MyDiv','fade')">误报</span>
                                                           
                                                             </div>
                                                         
@@ -954,7 +676,7 @@ document.execCommand("BackgroundImageCache", false, true);
                                               
                                                       <div style="text-align: left; cursor: default; height: 40px; padding-left:1.5em; background-color:#2166ac; color:#FFFFFF; margin-bottom:20px;">
                                                       
-                                                      	<div>处理异常情况</div>
+                                                      	<div>真火警</div>
 
                                                       </div>
                                               
@@ -962,35 +684,9 @@ document.execCommand("BackgroundImageCache", false, true);
                                                       
                                                       	<div class="Handle_name">
                                                         
-                                                        	<p>姓名：</p>
-                                                            
-                                                            <input  type="txt" value="请输入处理人姓名" />
-                                                        
-                                                        </div>
-                                                        
-                                                        <div class="Handle_name">
-                                                        
-                                                        	<p>联系方式：</p>
-                                                            
-                                                            <input  type="txt" value="请输入联系方式" />
-                                                        
-                                                        </div>
-                                                        
-                                                        <div class="Handle_name">
-                                                        
-                                                        	<p>报警地址：</p>
-                                                            
-                                                            <input  type="txt" value="请输入报警地址" />
-                                                        
-                                                        </div>
-                                                        
-                                                        <div class="Handle_name">
-                                                        
-                                                        	<p>备注信息：</p>
-                                                            
-                                                            <textarea name="txt" clos=",50" rows="5" warp="virtual"></textarea>
-                                                        
-                                                        </div>
+															<div>请拨打<span>119</span>电话。</div>
+
+                                                        </div> 
                                                         
                                                         <div class="czqd">
                                                         
@@ -1034,9 +730,9 @@ document.execCommand("BackgroundImageCache", false, true);
                                         
                                         	<ul>
                                             
-                                            	<input id="Button1" type="button" value="处理" onclick="ShowDiv('MyDiv','fade')" />
+                                            	<input id="Button1" type="button" value="真火警" onclick="ShowDiv('MyDiv','fade')" />
                                                 
-                                                <input id="Button2" type="button" value="确定" onclick="ShowDiv('fade')" />
+                                                <input id="Button2" type="button" value="假火警" onclick="ShowDiv('fade')" />
                                                 
                                                 <!--弹出层时背景层DIV-->
                                                 <script type="text/javascript">
@@ -1060,13 +756,13 @@ document.execCommand("BackgroundImageCache", false, true);
                                                 
                                                 	<div class="black_overlay_bg">
                                                 
-                                                        <h1>确认此操作吗，此操作不可逆。</h1>
+                                                        <h1>确认为假火警。完成操作</h1>
                                                         
                                                         <div class="czqd">
                                                             
-                                                                <span style="  margin-right:10px; padding: 6px 20px; border:1px solid #0a63c0;" onclick="CloseDiv('MyDiv','fade')">取消</span>
+                                                                <span style="  margin-right:10px; padding: 6px 20px; border:1px solid #0a63c0;" onclick="CloseDiv('MyDiv','fade')">复位</span>
     
-                                                                <span style="  margin-right:10px; background-color:#0a63c0; padding: 6px 20px; color:#FFFFFF; " onclick="CloseDiv('MyDiv','fade')">确定</span>
+                                                                <span style="  margin-right:10px; background-color:#0a63c0; padding: 6px 20px; color:#FFFFFF; " onclick="CloseDiv('MyDiv','fade')">误报</span>
                                                           
                                                             </div>
                                                         
@@ -1078,7 +774,7 @@ document.execCommand("BackgroundImageCache", false, true);
                                               
                                                       <div style="text-align: left; cursor: default; height: 40px; padding-left:1.5em; background-color:#2166ac; color:#FFFFFF; margin-bottom:20px;">
                                                       
-                                                      	<div>处理异常情况</div>
+                                                      	<div>真火警</div>
 
                                                       </div>
                                               
@@ -1086,35 +782,9 @@ document.execCommand("BackgroundImageCache", false, true);
                                                       
                                                       	<div class="Handle_name">
                                                         
-                                                        	<p>姓名：</p>
-                                                            
-                                                            <input  type="txt" value="请输入处理人姓名" />
-                                                        
-                                                        </div>
-                                                        
-                                                        <div class="Handle_name">
-                                                        
-                                                        	<p>联系方式：</p>
-                                                            
-                                                            <input  type="txt" value="请输入联系方式" />
-                                                        
-                                                        </div>
-                                                        
-                                                        <div class="Handle_name">
-                                                        
-                                                        	<p>报警地址：</p>
-                                                            
-                                                            <input  type="txt" value="请输入报警地址" />
-                                                        
-                                                        </div>
-                                                        
-                                                        <div class="Handle_name">
-                                                        
-                                                        	<p>备注信息：</p>
-                                                            
-                                                            <textarea name="txt" clos=",50" rows="5" warp="virtual"></textarea>
-                                                        
-                                                        </div>
+															<div>请拨打<span>119</span>电话。</div>
+
+                                                        </div> 
                                                         
                                                         <div class="czqd">
                                                         
@@ -1134,7 +804,300 @@ document.execCommand("BackgroundImageCache", false, true);
                                    
                                     </tr>
                                     
+                                    <tr>
+                                   
+                                        <td>报警</td>
+                                        
+                                        <td>2018/7/17 14:36:31</td>
+                                        
+                                        <td>寿光市亿龙食品股份有限公司</td>
+                                        
+                                        <td>87036594400</td>
+                                        
+                                        <td>GSM200</td>
+                                        
+                                        <td>1</td>
+                                        
+                                        <td>2#</td>
+                                        
+                                        <td>单冻机速冻库</td>
+                                        
+                                        <td>欠压:Ua196.2,Ub196.3,Uc170.8;</td>
+                                        
+                                        <td class="operation">
+                                        
+                                        	<ul>
+                                            
+                                            	<input id="Button1" type="button" value="真火警" onclick="ShowDiv('MyDiv','fade')" />
+                                                
+                                                <input id="Button2" type="button" value="假火警" onclick="ShowDiv('fade')" />
+                                                
+                                                <!--弹出层时背景层DIV-->
+                                                <script type="text/javascript">
+												//弹出隐藏层
+												function ShowDiv(show_div,bg_div){
+												 document.getElementById(show_div).style.display='block';
+												 document.getElementById(bg_div).style.display='block' ;
+												 var bgdiv = document.getElementById(bg_div);
+												 bgdiv.style.width = document.body.scrollWidth; 
+												 // bgdiv.style.height = $(document).height();
+												 $("#"+bg_div).height($(document).height());
+												};
+												//关闭弹出层
+												function CloseDiv(show_div,bg_div)
+												{
+												 document.getElementById(show_div).style.display='none';
+												 document.getElementById(bg_div).style.display='none';
+												};
+												</script>
+                                                <div id="fade" class="black_overlay">
+                                                
+                                                	<div class="black_overlay_bg">
+                                                
+                                                        <h1>确认为假火警。完成操作</h1>
+                                                        
+                                                        <div class="czqd">
+                                                            
+                                                                <span style="  margin-right:10px; padding: 6px 20px; border:1px solid #0a63c0;" onclick="CloseDiv('MyDiv','fade')">复位</span>
+    
+                                                                <span style="  margin-right:10px; background-color:#0a63c0; padding: 6px 20px; color:#FFFFFF; " onclick="CloseDiv('MyDiv','fade')">误报</span>
+                                                          
+                                                            </div>
+                                                        
+													</div>
+                                                    
+                                                </div>
+                                              
+                                                 <div id="MyDiv" class="white_content">
+                                              
+                                                      <div style="text-align: left; cursor: default; height: 40px; padding-left:1.5em; background-color:#2166ac; color:#FFFFFF; margin-bottom:20px;">
+                                                      
+                                                      	<div>真火警</div>
+
+                                                      </div>
+                                              
+                                                  	  <div>
+                                                      
+                                                      	<div class="Handle_name">
+                                                        
+															<div>请拨打<span>119</span>电话。</div>
+
+                                                        </div> 
+                                                        
+                                                        <div class="czqd">
+                                                        
+															<span style="  margin-right:10px; padding: 6px 20px; border:1px solid #0a63c0;" onclick="CloseDiv('MyDiv','fade')">取消</span>
+
+                                                        	<span style="  margin-right:10px; background-color:#0a63c0; padding: 6px 20px; color:#FFFFFF; " onclick="CloseDiv('MyDiv','fade')">确定</span>
+                                                      
+                                                      	</div>
+                                                      
+                                                      </div>
+                                              
+                                                 </div>
+                                            
+                                            </ul>
+                                        
+                                        </td> 
+                                   
+                                    </tr>
                                     
+                                    <tr>
+                                   
+                                        <td>报警</td>
+                                        
+                                        <td>2018/7/17 14:36:31</td>
+                                        
+                                        <td>寿光市亿龙食品股份有限公司</td>
+                                        
+                                        <td>87036594400</td>
+                                        
+                                        <td>GSM200</td>
+                                        
+                                        <td>1</td>
+                                        
+                                        <td>2#</td>
+                                        
+                                        <td>单冻机速冻库</td>
+                                        
+                                        <td>欠压:Ua196.2,Ub196.3,Uc170.8;</td>
+                                        
+                                        <td class="operation">
+                                        
+                                        	<ul>
+                                            
+                                            	<input id="Button1" type="button" value="真火警" onclick="ShowDiv('MyDiv','fade')" />
+                                                
+                                                <input id="Button2" type="button" value="假火警" onclick="ShowDiv('fade')" />
+                                                
+                                                <!--弹出层时背景层DIV-->
+                                                <script type="text/javascript">
+												//弹出隐藏层
+												function ShowDiv(show_div,bg_div){
+												 document.getElementById(show_div).style.display='block';
+												 document.getElementById(bg_div).style.display='block' ;
+												 var bgdiv = document.getElementById(bg_div);
+												 bgdiv.style.width = document.body.scrollWidth; 
+												 // bgdiv.style.height = $(document).height();
+												 $("#"+bg_div).height($(document).height());
+												};
+												//关闭弹出层
+												function CloseDiv(show_div,bg_div)
+												{
+												 document.getElementById(show_div).style.display='none';
+												 document.getElementById(bg_div).style.display='none';
+												};
+												</script>
+                                                <div id="fade" class="black_overlay">
+                                                
+                                                	<div class="black_overlay_bg">
+                                                
+                                                        <h1>确认为假火警。完成操作</h1>
+                                                        
+                                                        <div class="czqd">
+                                                            
+                                                                <span style="  margin-right:10px; padding: 6px 20px; border:1px solid #0a63c0;" onclick="CloseDiv('MyDiv','fade')">复位</span>
+    
+                                                                <span style="  margin-right:10px; background-color:#0a63c0; padding: 6px 20px; color:#FFFFFF; " onclick="CloseDiv('MyDiv','fade')">误报</span>
+                                                          
+                                                            </div>
+                                                        
+													</div>
+                                                    
+                                                </div>
+                                              
+                                                 <div id="MyDiv" class="white_content">
+                                              
+                                                      <div style="text-align: left; cursor: default; height: 40px; padding-left:1.5em; background-color:#2166ac; color:#FFFFFF; margin-bottom:20px;">
+                                                      
+                                                      	<div>真火警</div>
+
+                                                      </div>
+                                              
+                                                  	  <div>
+                                                      
+                                                      	<div class="Handle_name">
+                                                        
+															<div>请拨打<span>119</span>电话。</div>
+
+                                                        </div> 
+                                                        
+                                                        <div class="czqd">
+                                                        
+															<span style="  margin-right:10px; padding: 6px 20px; border:1px solid #0a63c0;" onclick="CloseDiv('MyDiv','fade')">取消</span>
+
+                                                        	<span style="  margin-right:10px; background-color:#0a63c0; padding: 6px 20px; color:#FFFFFF; " onclick="CloseDiv('MyDiv','fade')">确定</span>
+                                                      
+                                                      	</div>
+                                                      
+                                                      </div>
+                                              
+                                                 </div>
+                                            
+                                            </ul>
+                                        
+                                        </td> 
+                                   
+                                    </tr>
+                                    
+                                    <tr>
+                                   
+                                        <td>报警</td>
+                                        
+                                        <td>2018/7/17 14:36:31</td>
+                                        
+                                        <td>寿光市亿龙食品股份有限公司</td>
+                                        
+                                        <td>87036594400</td>
+                                        
+                                        <td>GSM200</td>
+                                        
+                                        <td>1</td>
+                                        
+                                        <td>2#</td>
+                                        
+                                        <td>单冻机速冻库</td>
+                                        
+                                        <td>欠压:Ua196.2,Ub196.3,Uc170.8;</td>
+                                        
+                                        <td class="operation">
+                                        
+                                        	<ul>
+                                            
+                                            	<input id="Button1" type="button" value="真火警" onclick="ShowDiv('MyDiv','fade')" />
+                                                
+                                                <input id="Button2" type="button" value="假火警" onclick="ShowDiv('fade')" />
+                                                
+                                                <!--弹出层时背景层DIV-->
+                                                <script type="text/javascript">
+												//弹出隐藏层
+												function ShowDiv(show_div,bg_div){
+												 document.getElementById(show_div).style.display='block';
+												 document.getElementById(bg_div).style.display='block' ;
+												 var bgdiv = document.getElementById(bg_div);
+												 bgdiv.style.width = document.body.scrollWidth; 
+												 // bgdiv.style.height = $(document).height();
+												 $("#"+bg_div).height($(document).height());
+												};
+												//关闭弹出层
+												function CloseDiv(show_div,bg_div)
+												{
+												 document.getElementById(show_div).style.display='none';
+												 document.getElementById(bg_div).style.display='none';
+												};
+												</script>
+                                                <div id="fade" class="black_overlay">
+                                                
+                                                	<div class="black_overlay_bg">
+                                                
+                                                        <h1>确认为假火警。完成操作</h1>
+                                                        
+                                                        <div class="czqd">
+                                                            
+                                                                <span style="  margin-right:10px; padding: 6px 20px; border:1px solid #0a63c0;" onclick="CloseDiv('MyDiv','fade')">复位</span>
+    
+                                                                <span style="  margin-right:10px; background-color:#0a63c0; padding: 6px 20px; color:#FFFFFF; " onclick="CloseDiv('MyDiv','fade')">误报</span>
+                                                          
+                                                            </div>
+                                                        
+													</div>
+                                                    
+                                                </div>
+                                              
+                                                 <div id="MyDiv" class="white_content">
+                                              
+                                                      <div style="text-align: left; cursor: default; height: 40px; padding-left:1.5em; background-color:#2166ac; color:#FFFFFF; margin-bottom:20px;">
+                                                      
+                                                      	<div>真火警</div>
+
+                                                      </div>
+                                              
+                                                  	  <div>
+                                                      
+                                                      	<div class="Handle_name">
+                                                        
+															<div>请拨打<span>119</span>电话。</div>
+
+                                                        </div> 
+                                                        
+                                                        <div class="czqd">
+                                                        
+															<span style="  margin-right:10px; padding: 6px 20px; border:1px solid #0a63c0;" onclick="CloseDiv('MyDiv','fade')">取消</span>
+
+                                                        	<span style="  margin-right:10px; background-color:#0a63c0; padding: 6px 20px; color:#FFFFFF; " onclick="CloseDiv('MyDiv','fade')">确定</span>
+                                                      
+                                                      	</div>
+                                                      
+                                                      </div>
+                                              
+                                                 </div>
+                                            
+                                            </ul>
+                                        
+                                        </td> 
+                                   
+                                    </tr> 
+                                                                        
                                 </tbody>
                                 
                                 </table>

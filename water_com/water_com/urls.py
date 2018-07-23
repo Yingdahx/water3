@@ -51,6 +51,7 @@ urlpatterns = [
     path('yhgl/', views.yhgl),
     path('yhjl/', views.yhjl),
     path('zhsz/', views.zhsz),
+    path('bj/', views.bj),
     #
     # path('index/',views.index),
     path('day/',views.day),
