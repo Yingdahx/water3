@@ -1306,7 +1306,7 @@ def police_Week(request):
     print(ctx)
     return render(request,'police_week.html',ctx)
 
-def index(request):
+def index_buyongle(request):
 
     ctx = {}
 
@@ -3094,57 +3094,127 @@ def login_out(request):
     return redirect(com_login)
 
 def fkvj(request):
+    member_user = check_login(request)
+    if not member_user:
+        return redirect(com_login)
     ctx = {}
+    ctx['name'] = member_user.name
+    ctx['icon'] = member_user.icon
     return render(request, 'fkvj.html', ctx)
 
 def grzx(request):
+    member_user = check_login(request)
+    if not member_user:
+        return redirect(com_login)
     ctx = {}
+    ctx['name'] = member_user.name
+    ctx['icon'] = member_user.icon
     return render(request, 'grzx.html', ctx)
 
 def index(request):
+    member_user = check_login(request)
+    if not member_user:
+        return redirect(com_login)
     ctx = {}
+    ctx['name'] = member_user.name
+    ctx['icon'] = member_user.icon
     return render(request, 'index.html', ctx)
 
 def sbgl(request):
+    member_user = check_login(request)
+    if not member_user:
+        return redirect(com_login)
     ctx = {}
+    ctx['name'] = member_user.name
+    ctx['icon'] = member_user.icon
     return render(request, 'sbgl.html', ctx)
 
 def summary(request):
+    member_user = check_login(request)
+    if not member_user:
+        return redirect(com_login)
     ctx = {}
+    ctx['name'] = member_user.name
+    ctx['icon'] = member_user.icon
     return render(request, 'summary.html', ctx)
 
 def xjjh_increase(request):
+    member_user = check_login(request)
+    if not member_user:
+        return redirect(com_login)
     ctx = {}
+    ctx['name'] = member_user.name
+    ctx['icon'] = member_user.icon
     return render(request, 'xjjh_increase.html', ctx)
 
 def xjjh_modify(request):
+    member_user = check_login(request)
+    if not member_user:
+        return redirect(com_login)
     ctx = {}
+    ctx['name'] = member_user.name
+    ctx['icon'] = member_user.icon
     return render(request, 'xjjh_modify.html', ctx)
 
 def xjjh(request):
+    member_user = check_login(request)
+    if not member_user:
+        return redirect(com_login)
     ctx = {}
+    ctx['name'] = member_user.name
+    ctx['icon'] = member_user.icon
     return render(request, 'xjjh.html', ctx)
 
 def xjrl(request):
+    member_user = check_login(request)
+    if not member_user:
+        return redirect(com_login)
     ctx = {}
+    ctx['name'] = member_user.name
+    ctx['icon'] = member_user.icon
     return render(request, 'xjrl.html', ctx)
 
 def yhcl(request):
+    member_user = check_login(request)
+    if not member_user:
+        return redirect(com_login)
     ctx = {}
+    ctx['name'] = member_user.name
+    ctx['icon'] = member_user.icon
     return render(request, 'yhcl.html', ctx)
 
 def yhgl(request):
+    member_user = check_login(request)
+    if not member_user:
+        return redirect(com_login)
     ctx = {}
+    ctx['name'] = member_user.name
+    ctx['icon'] = member_user.icon
     return render(request, 'yhgl.html', ctx)
 
 def yhjl(request):
+    member_user = check_login(request)
+    if not member_user:
+        return redirect(com_login)
     ctx = {}
+    ctx['name'] = member_user.name
+    ctx['icon'] = member_user.icon
     return render(request, 'yhjl.html', ctx)
 
 def zhsz(request):
+    member_user = check_login(request)
+    if not member_user:
+        return redirect(com_login)
     ctx = {}
+    ctx['name'] = member_user.name
+    ctx['icon'] = member_user.icon
     return render(request, 'zhsz.html', ctx)
 
 def bj(request):
+    member_user = check_login(request)
+    if not member_user:
+        return redirect(com_login)
     ctx = {}
+    ctx['name'] = member_user.name
+    ctx['icon'] = member_user.icon
     return render(request, 'bj.html', ctx)
