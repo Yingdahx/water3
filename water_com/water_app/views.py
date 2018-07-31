@@ -3213,24 +3213,24 @@ def zhsz(request):
     return render(request, 'zhsz.html', ctx)
 
 def bj(request):
-    member_user = check_login(request)
-    if not member_user:
-        return redirect(com_login)
-    ctx = {}
-    ctx['name'] = member_user.name
-    ctx['icon'] = member_user.icon
+    # member_user = check_login(request)
+    # if not member_user:
+    #     return redirect(com_login)
+    # ctx = {}
+    # ctx['name'] = member_user.name
+    # ctx['icon'] = member_user.icon
 
-    area = member_user.area
-    infoInser = json.loads(area)['infoInser']
-    street = list(infoInser.keys())[0]
-    infoInser2 = infoInser[street]
-    village = list(infoInser2.keys())[0]
+    # area = member_user.area
+    # infoInser = json.loads(area)['infoInser']
+    # street = list(infoInser.keys())[0]
+    # infoInser2 = infoInser[street]
+    # village = list(infoInser2.keys())[0]
 
-    block = Block.objects.filter(street_name=street, village_name=village).first()
-    street_lat = block.street_lat
-    street_lng = block.street_lng
-    count = block.count
+    # block = Block.objects.filter(street_name=street, village_name=village).first()
+    # street_lat = block.street_lat
+    # street_lng = block.street_lng
+    # count = block.count
 
-    focus_data_v2 = Focus_data_v2.objects.filter(region_name=street, village_name=village)
+    # focus_data_v2 = Focus_data_v2.objects.filter(region_name=street, village_name=village)
     
     return render(request, 'bj.html', ctx)
