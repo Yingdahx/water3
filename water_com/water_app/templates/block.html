@@ -9,16 +9,16 @@
         $("form>div>fieldset").append("<div class='field-village' style='padding:8px'><div></div></div>")
 
         var info = new Object()
-        var ad = $('.field-area>div')
+        // var ad = $('.field-area>div')
         var sd = $('.field-street>div')
-        var vd = $('.field-village>div')
+        var vd = $('.field-street>div')
 
         // 初始化 
         $.post("/getProvince/", {},
             function (data) {
                 var e = $(".field-area>div>input[type=text]").val()
                 var h = JSON.parse(e)
-                console.log(h)
+                // console.log(h)
                 d = data.blocks
                 for (var i = 0; i < d.length; i++) {
                     a = d[i].area_name
@@ -41,20 +41,23 @@
                 s_ = 0
                 v_ = 0
                 var areas = Object.keys(info.info)
-                ad.append('</br></br>')
+                // ad.append('</br></br>')
                 for (var i = 0; i < areas.length; i++) {
-                    ad.append('<input type="checkbox" name="areas"  id=' + de + a_ + ' value=' + areas[i] +
-                        '>' + areas[i])
+                    // ad.append('<input type="checkbox" name="areas"  id=' + de + a_ + ' value=' + areas[i] +
+                    //     '>' + areas[i])
                     var streets = Object.keys(info.info[areas[i]])
                     for (var i_ = 0; i_ < streets.length; i_++) {
                         sd.append('<input type="checkbox" name="streets"  id=' + de + a_ + de + s_ +
                             ' value=' + streets[i_] + '>' + streets[i_])
+                        sd.append('<p class = "clear"></p>')
+                        vd.append('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
                         var villages = info.info[areas[i]][streets[i_]]
                         for (var i__ = 0; i__ < villages.length; i__++) {
-                            vd.append('<input type="checkbox" name="villages"  id=' + de + a_ + de + s_ +
+                            vd.append('<input type="checkbox" style="margin-left:10px" name="villages"  id=' + de + a_ + de + s_ +
                                 de + v_ + ' value=' + villages[i__] + '>' + villages[i__])
                             v_++
                         }
+                        vd.append('<p class = "clear"></p>')
                         s_++
                     }
                     a_++
@@ -64,7 +67,7 @@
                 var _all = []
                 var k = Object.keys(h.infoInser)
                 var hs_ = $("input[name='streets']")
-                var ha_ = $("input[name='areas']")
+                // var ha_ = $("input[name='areas']")
                 var hv_ = $("input[name='villages']")
                 for (var i = 0; i < k.length; i++) {
                     // area keys
@@ -77,25 +80,25 @@
                 // console.log(_all)
 
                 for (var i = 0; i < k.length; i++) {
-                    for (var j = 0; j < ha_.length; j++) {
-                        if (k[i] == $(ha_[j]).val()) {
-                            _id.push($(ha_[j]).attr('id'))
-                            var a_s = $("input[name='streets'][id^=" + $(ha_[j]).attr('id') + "]")
+                    for (var j = 0; j < hs_.length; j++) {
+                        if (k[i] == $(hs_[j]).val()) {
+                            _id.push($(hs_[j]).attr('id'))
+                            var a_s = $("input[name='villages'][id^=" + $(hs_[j]).attr('id') + "]")
                             for (var w = 0; w < a_s.length; w++) {
                                 // console.log($(a_s[w]).val())
                                 // console.log(Object.keys(h.infoInser[k[i]]))
                                 // console.log($.inArray($(a_s[w]).val(),Object.keys(h.infoInser[k[i]])))
                                 if ($.inArray($(a_s[w]).val(), Object.keys(h.infoInser[k[i]])) != -1) {
                                     $(a_s[w]).prop('checked', true)
-                                    var s_v = $("input[name='villages'][id^=" + $(a_s[w]).attr('id') + "]")
+                                    // var s_v = $("input[name='villages'][id^=" + $(a_s[w]).attr('id') + "]")
 
-                                    for (var e = 0; e < s_v.length; e++) {
-                                        if ($.inArray($(s_v[e]).val(), h.infoInser[k[i]][$(a_s[w]).val()]) !=
-                                            -1) {
-                                            $(s_v[e]).prop('checked', true)
-                                        }
+                                    // for (var e = 0; e < s_v.length; e++) {
+                                    //     if ($.inArray($(s_v[e]).val(), h.infoInser[k[i]][$(a_s[w]).val()]) !=
+                                    //         -1) {
+                                    //         $(s_v[e]).prop('checked', true)
+                                    //     }
 
-                                    }
+                                    // }
 
                                 }
                             }
@@ -124,40 +127,40 @@
 
 
 
-                $("input[name='areas']").change(function () {
-                    var that = $(this)
-                    var c = that.is(':checked')
-                    var _id = that.attr('id')
-                    var _s = $("input[name='streets']")
-                    var _v = $("input[name='villages']")
-                    if (!c) {
-                        for (var i = 0; i < _s.length; i++) {
-                            if ($(_s[i]).attr('id').indexOf(_id) == 0) {
-                                $(_s[i]).prop('checked', false)
-                            }
-                        }
-                        for (var j = 0; j < _v.length; j++) {
-                            {}
-                            if ($(_v[j]).attr('id').indexOf(_id) == 0) {
-                                $(_v[j]).prop('checked', false)
-                            }
-                        }
-                    }
-                    if (c) {
-                        for (var i = 0; i < _s.length; i++) {
-                            if ($(_s[i]).attr('id').indexOf(_id) == 0) {
-                                $(_s[i]).prop('checked', true)
-                            }
-                        }
-                        for (var j = 0; j < _v.length; j++) {
-                            {}
-                            if ($(_v[j]).attr('id').indexOf(_id) == 0) {
-                                $(_v[j]).prop('checked', true)
-                            }
-                        }
-                    }
+                // $("input[name='areas']").change(function () {
+                //     var that = $(this)
+                //     var c = that.is(':checked')
+                //     var _id = that.attr('id')
+                //     var _s = $("input[name='streets']")
+                //     var _v = $("input[name='villages']")
+                //     if (!c) {
+                //         for (var i = 0; i < _s.length; i++) {
+                //             if ($(_s[i]).attr('id').indexOf(_id) == 0) {
+                //                 $(_s[i]).prop('checked', false)
+                //             }
+                //         }
+                //         for (var j = 0; j < _v.length; j++) {
+                //             {}
+                //             if ($(_v[j]).attr('id').indexOf(_id) == 0) {
+                //                 $(_v[j]).prop('checked', false)
+                //             }
+                //         }
+                //     }
+                //     if (c) {
+                //         for (var i = 0; i < _s.length; i++) {
+                //             if ($(_s[i]).attr('id').indexOf(_id) == 0) {
+                //                 $(_s[i]).prop('checked', true)
+                //             }
+                //         }
+                //         for (var j = 0; j < _v.length; j++) {
+                //             {}
+                //             if ($(_v[j]).attr('id').indexOf(_id) == 0) {
+                //                 $(_v[j]).prop('checked', true)
+                //             }
+                //         }
+                //     }
 
-                })
+                // })
                 $("input[name='streets']").change(function () {
                     var that = $(this)
                     var c = that.is(':checked')
@@ -182,7 +185,7 @@
         $("#member_form").submit(function (e) {
             // alert('a')
             var infoInsert = new Object()
-            var a_ = $("input[name='areas']")
+            var a_ = $("input[name='streets']")
             for (var i = 0; i < a_.length; i++) {
                 var a = $(a_[i]).val()
                 var _id = $(a_[i]).attr('id')
@@ -193,20 +196,20 @@
                 }
                 if (!(infoInsert.infoInser[a]) && _c) {
                     infoInsert.infoInser[a] = {}
-                    var s_ = $("input[name='streets']")
+                    var s_ = $("input[name='villages']")
                     for (var j = 0; j < s_.length; j++) {
                         _c = $(s_[j]).is(':checked')
                         if ($(s_[j]).attr('id').indexOf(_id) == 0 && _c) {
                             var s = $(s_[j]).val()
                             infoInsert.infoInser[a][s] = []
-                            var v_ = $("input[name='villages']")
-                            var __id = $(s_[j]).attr('id')
-                            for (var k = 0; k < v_.length; k++) {
-                                _c = $(v_[k]).is(':checked')
-                                if ($(v_[k]).attr('id').indexOf(__id) == 0 && _c) {
-                                    infoInsert.infoInser[a][$(s_[j]).val()].push($(v_[k]).val())
-                                }
-                            }
+                            // var v_ = $("input[name='villages']")
+                            // var __id = $(s_[j]).attr('id')
+                            // for (var k = 0; k < v_.length; k++) {
+                                // _c = $(v_[k]).is(':checked')
+                                // if ($(v_[k]).attr('id').indexOf(__id) == 0 && _c) {
+                                    infoInsert.infoInser[a][$(s_[j]).val()]
+                                // }
+                            // }
                         }
 
                     }

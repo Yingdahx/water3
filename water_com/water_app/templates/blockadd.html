@@ -11,9 +11,9 @@
         $("form>div>fieldset").append("<div class='field-village' style='padding:8px'><div></div></div>")
         
 
-        var ad = $('.field-area>div')
+        // var ad = $('.field-area>div')
         var sd = $('.field-street>div')
-        var vd = $('.field-village>div')
+        var vd = $('.field-street>div')
         var color = ['red', 'blue']
         // 初始化 
         $.post("/getProvince/", {},
@@ -34,62 +34,67 @@
                 s_ = 0
                 v_ = 0
                 var areas = Object.keys(info.info)
-                ad.append('</br></br>')
+                // ad.append('</br></br>')
                 for (var i = 0; i < areas.length; i++) {
                     
-                    ad.append('<input type="checkbox" name="areas" checked="true" id=' + de + a_ + ' value=' + areas[i] + '>' + areas[i])
+                    // ad.append('<div style="display:none;">'+'<input type="checkbox" name="areas" checked="true" id=' + de + a_ + ' value=' + areas[i] + '>' + areas[i] + '</div>')
                     var streets = Object.keys(info.info[areas[i]])
                     for (var i_ = 0; i_ < streets.length; i_++) {
-                        sd.append('<input type="checkbox" name="streets" checked="true" id=' + de + a_ + de + s_ + ' value=' + streets[i_] + '>' + streets[i_])
                         var villages = info.info[areas[i]][streets[i_]]
+                        sd.append('<input type="checkbox" name="streets" checked="true" id=' + de + a_ + de + s_ + ' value=' + streets[i_] + '>' + streets[i_] )
+                        sd.append('<p class = "clear"></p>')
+                        vd.append('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
                         for (var i__ = 0; i__ < villages.length; i__++) {
-                            vd.append('<input type="checkbox" name="villages" checked="true" id=' + de + a_ + de + s_ + de + v_ + ' value=' + villages[i__] + '>' + villages[i__])
+                            vd.append('<input type="checkbox" name="villages" style="margin-left:10px" checked="true" id=' + de + a_ + de + s_ + de + v_ + ' value=' + villages[i__] + '>' + villages[i__])
                             v_++
                         }
+                        vd.append('<p class = "clear"></p>')
                         s_++
+
                     }
                     a_++
                 }
-                $("input[name='areas']").change(function () {
-                    var that = $(this)
-                    var c = that.is(':checked')
-                    var _id = that.attr('id')
-                    var _s = $("input[name='streets']")
-                    var _v = $("input[name='villages']")
-                    if (!c) {
-                        for (var i = 0; i < _s.length; i++) {
-                            if ($(_s[i]).attr('id').indexOf(_id) == 0) {
-                                $(_s[i]).prop('checked', false)
-                            }
-                        }
-                        for (var j = 0; j < _v.length; j++) {
-                            { }
-                            if ($(_v[j]).attr('id').indexOf(_id) == 0) {
-                                $(_v[j]).prop('checked', false)
-                            }
-                        }
-                    }
-                    if (c) {
-                        for (var i = 0; i < _s.length; i++) {
-                            if ($(_s[i]).attr('id').indexOf(_id) == 0) {
-                                $(_s[i]).prop('checked', true)
-                            }
-                        }
-                        for (var j = 0; j < _v.length; j++) {
-                            { }
-                            if ($(_v[j]).attr('id').indexOf(_id) == 0) {
-                                $(_v[j]).prop('checked', true)
-                            }
-                        }
-                    }
+                // $("input[name='areas']").change(function () {
+                //     var that = $(this)
+                //     var c = that.is(':checked')
+                //     var _id = that.attr('id')
+                //     var _s = $("input[name='streets']")
+                //     var _v = $("input[name='villages']")
+                //     if (!c) {
+                //         for (var i = 0; i < _s.length; i++) {
+                //             if ($(_s[i]).attr('id').indexOf(_id) == 0) {
+                //                 $(_s[i]).prop('checked', false)
+                //             }
+                //         }
+                //         for (var j = 0; j < _v.length; j++) {
+                //             { }
+                //             if ($(_v[j]).attr('id').indexOf(_id) == 0) {
+                //                 $(_v[j]).prop('checked', false)
+                //             }
+                //         }
+                //     }
+                //     if (c) {
+                //         for (var i = 0; i < _s.length; i++) {
+                //             if ($(_s[i]).attr('id').indexOf(_id) == 0) {
+                //                 $(_s[i]).prop('checked', true)
+                //             }
+                //         }
+                //         for (var j = 0; j < _v.length; j++) {
+                //             { }
+                //             if ($(_v[j]).attr('id').indexOf(_id) == 0) {
+                //                 $(_v[j]).prop('checked', true)
+                //             }
+                //         }
+                //     }
 
-                })
+                // })
                 $("input[name='streets']").change(function () {
+                    console.log('street change')
                     var that = $(this)
                     var c = that.is(':checked')
                     var _id = that.attr('id')
                     var _v = $("input[name='villages']")
-                    var _a = $("input[name='areas']")
+                    // var _a = $("input[name='areas']")
                     var _s = $("input[name='streets']")
                     var f = false
 
@@ -108,64 +113,104 @@
                                 $(_v[i]).prop('checked', true)
                             }
                         }
-                        for (var k = 0; k < _a.length; k++) {
-                            if (_id.indexOf($(_a[k]).attr('id')) == 0) {
-                                $(_a[k]).prop('checked', true)
-                            }
-                        }
+                        // for (var k = 0; k < _a.length; k++) {
+                        //     if (_id.indexOf($(_a[k]).attr('id')) == 0) {
+                        //         $(_a[k]).prop('checked', true)
+                        //     }
+                        // }
                     }
+                    // console.log('街道改变事件结束')
                 })
                 $("input[name='villages']").change(function () {
+                    console.log('village change')
                     var that = $(this)
                     var c = that.is(':checked')
                     var _id = that.attr('id')
                     var _s = $("input[name='streets']")
-                    var _a = $("input[name='areas']")
+                    // var _a = $("input[name='areas']")
                     if (c) {
                         for (var k = 0; k < _s.length; k++) {
                             if (_id.indexOf($(_s[k]).attr('id')) == 0) {
                                 $(_s[k]).prop('checked', true)
-                                for (var f = 0; f < _a.length; f++) {
-                                    _id = $(_s[k]).attr('id')
-                                    if (_id.indexOf($(_a[f]).attr('id')) == 0) {
-                                        $(_a[f]).prop('checked', true)
-                                    }
-                                }
+                                // for (var f = 0; f < _a.length; f++) {
+                                //     _id = $(_s[k]).attr('id')
+                                //     if (_id.indexOf($(_a[f]).attr('id')) == 0) {
+                                //         $(_a[f]).prop('checked', true)
+                                //     }
+                                // }
                             }
                         }
                     }
+                    // console.log('居委改变事件结束')
                 })
 
             }, "json");
 
-        //$(".field-area>div>input[type='text']").val('cnm')
-        //alert($(".field-area>div>input[type='text']").val())
 
 
+        // $("#member_form").submit(function (e) {
+        //     // var a_ = $("input[name='areas']")
+        //     // for (var i = 0; i < a_.length; i++) {
+        //     //     var a = $(a_[i]).val()
+        //     //     var _id = $(a_[i]).attr('id')
+        //     //     var _c = $(a_[i]).is(':checked')
+
+        //         // if (!infoInsert.infoInser) { infoInsert.infoInser = {} }
+        //         // if (!(infoInsert.infoInser[a]) && _c) {
+        //             // infoInsert.infoInser[a] = {}
+        //             console.log('开始解析')
+        //             var s_ = $("input[name='streets']")
+        //             for (var j = 0; j < s_.length; j++) {
+        //                 var s = $(s_[j]).val()
+        //                 var _id = $(s_[j]).sttr('id')
+        //                 var _c = $(s_[j]).is(':checked')
+
+        //                 if (!infoInsert.infoInser) { infoInsert.infoInser = {} }
+        //                 if (!(infoInsert.infoInser[s]) && _c) {
+        //                     infoInsert.infoInser[s] = []
+        //                     var v_ = $("input[name='villages']")
+        //                     for (var k = 0; k < v_.length; k++) {
+        //                         _c = $(v_[k]).is(':checked')
+        //                         if ($(v_[k]).attr('id').indexOf(__id) == 0 && _c) {
+        //                             infoInsert.infoInser[$(s_[j]).val()].push($(v_[k]).val())
+        //                             console.log(infoInsert)
+        //                         }
+        //                     }
+        //                 }
+
+        //             }
+        //     console.log('即将json转str')
+        //     console.log(infoInsert)
+        //     $(".field-area>div>input[type='text']").val(JSON.stringify(infoInsert))
+        // });
         $("#member_form").submit(function (e) {
-            var a_ = $("input[name='areas']")
+            // alert('a')
+            var infoInsert = new Object()
+            var a_ = $("input[name='streets']")
             for (var i = 0; i < a_.length; i++) {
                 var a = $(a_[i]).val()
                 var _id = $(a_[i]).attr('id')
                 var _c = $(a_[i]).is(':checked')
 
-                if (!infoInsert.infoInser) { infoInsert.infoInser = {} }
+                if (!infoInsert.infoInser) {
+                    infoInsert.infoInser = {}
+                }
                 if (!(infoInsert.infoInser[a]) && _c) {
                     infoInsert.infoInser[a] = {}
-                    var s_ = $("input[name='streets']")
+                    var s_ = $("input[name='villages']")
                     for (var j = 0; j < s_.length; j++) {
                         _c = $(s_[j]).is(':checked')
                         if ($(s_[j]).attr('id').indexOf(_id) == 0 && _c) {
                             var s = $(s_[j]).val()
                             infoInsert.infoInser[a][s] = []
-                            var v_ = $("input[name='villages']")
-                            var __id = $(s_[j]).attr('id')
-                            for (var k = 0; k < v_.length; k++) {
-                                _c = $(v_[k]).is(':checked')
-                                if ($(v_[k]).attr('id').indexOf(__id) == 0 && _c) {
-                                    infoInsert.infoInser[a][$(s_[j]).val()].push($(v_[k]).val())
-                                }
-                            }
+                            // var v_ = $("input[name='villages']")
+                            // var __id = $(s_[j]).attr('id')
+                            // for (var k = 0; k < v_.length; k++) {
+                                // _c = $(v_[k]).is(':checked')
+                                // if ($(v_[k]).attr('id').indexOf(__id) == 0 && _c) {
+                                    infoInsert.infoInser[a][$(s_[j]).val()]
+                                // }
+                            // }
                         }
 
                     }

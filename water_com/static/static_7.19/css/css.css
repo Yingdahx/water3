@@ -612,6 +612,7 @@ ul.pagination li a:hover:not(.active) {background-color: #225b8b; color: white}
  z-index:1002;
  overflow: auto;
 }
+
 .Handle_name{ overflow:hidden; width:90%;    margin: auto; margin-top:12px;}
 .Handle_name p{ float:left; width:80px; text-align:right; font-size:12px;line-height: 30px;}
 .Handle_name input{ float:left; width:70%; height:24px; line-height:24px; padding-left:8px;color:rgba(0, 0, 0, 0.65)}
@@ -631,3 +632,9 @@ ul.pagination li a:hover:not(.active) {background-color: #225b8b; color: white}
 .czqd_quxiao{ margin-right:10px; padding: 7px 20px; border:1px solid #d9d9d9; border-radius:2px;}
 .czqd_quxiao:hover{border:1px solid #0a63c0; color:#0a63c0; transition:0.3s }
 .czqd_queding{margin-right:10px; background-color:#0a63c0; padding: 7px 20px; color:#FFFFFF; border-radius:2px;border:1px solid #0a63c0; }
+.bjxx{  
+	width: 176px;  /*必须设置宽度*/
+    overflow: hidden;  /*溢出隐藏*/
+    text-overflow: ellipsis; /*以省略号...显示*/
+    white-space: nowrap;  /*强制不换行*/
+}

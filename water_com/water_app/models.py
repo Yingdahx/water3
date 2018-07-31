@@ -12,6 +12,8 @@ class Block(models.Model):
 	village_name = models.CharField(max_length=200,default='',verbose_name='居委会名字',)
 	street_lat = models.CharField(max_length=200,default='',verbose_name='街道纬度',)
 	street_lng = models.CharField(max_length=200,default='',verbose_name='街道经度',)
+	village_lat = models.CharField(max_length=200,default='',verbose_name='居委会纬度',)
+	village_lng = models.CharField(max_length=200,default='',verbose_name='居委会经度',)
 	count = models.IntegerField(default=0, verbose_name='区域报警数量')
 
 	def __str__(self):
@@ -56,7 +58,7 @@ class Equipment(models.Model):
 	committee_id = models.CharField(max_length=255,null=True,verbose_name='所属居委ID')
 	committee_name = models.CharField(max_length=255,null=True,verbose_name='所属居委名字')
 	equipment_type= models.ForeignKey(Equipment_type,on_delete=models.CASCADE,verbose_name='传感器类型',null=True)
-	status = models.IntegerField(choices=[(7,'正常'),(4,'低电压'),(1,'报警'),(0,'未知')],default=0,verbose_name='传感器状态')
+	status = models.IntegerField(choices=[(7,'正常'),(4,'异常'),(1,'报警'),(0,'未知')],default=0,verbose_name='传感器状态')
 	change_time = models.DateTimeField(auto_now=True,verbose_name='状态改变时间')
 
 	def __str__(self):
@@ -78,11 +80,19 @@ class Member(models.Model):
 	icon = models.ImageField(upload_to='member/',null=True,verbose_name='用户头像')
 	token = models.CharField(max_length=50,null=True,blank=True,default='',verbose_name='登录生成token')
 	message_view = models.CharField(max_length=9999,null=True,default='',blank=True,verbose_name='消息view记录')
-	area = models.CharField(default='',max_length=2000,choices=(),verbose_name='权限选项')
+	area = models.CharField(blank=True,default='',max_length=2000,choices=(),verbose_name='权限选项')
 
 	def __str__(self):
 		return str(self.phone+','+self.name)
 
+class IsUpdata(models.Model):
+	class Meta:
+		verbose_name = verbose_name_plural = '大屏地图是否刷新'
+
+	map_update = models.BooleanField(default=False,verbose_name='大屏地图是否同步模拟的数据')
+
+	def __str__(self):
+		return str(self.map_update)
 
 
 class Data(models.Model):
@@ -102,7 +112,7 @@ class Data(models.Model):
 	get_time = models.DateTimeField(auto_now_add=True,verbose_name='入表时间')
 
 	def __str__(self):
-		return '设备:'+self.device_id+',类型:'+self.device_type+',状态:'+self.info_type+'入表时间:'+str(self.get_time)
+		return '设备:'+self.device_id
 
 class Day_data(models.Model):
 	class Meta:
@@ -166,8 +176,6 @@ class Focus_data(models.Model):
 		verbose_name = verbose_name_plural = '烟感实时报警'
 			
 	device_type = models.CharField(max_length=20,null=True,default='',verbose_name='设备类型')
-	create_time = models.DateTimeField(null=True,verbose_name='发出时间')
-	state = models.CharField(max_length=20,null=True,default='',verbose_name='报警状态')
 	battery_voltage = models.CharField(max_length=255,null=True,default='',verbose_name='电压')
 	device_id = models.CharField(max_length=50,null=True,default='',verbose_name='设备编号')
 	received_time = models.DateTimeField(null=True,verbose_name='接收时间')
@@ -198,7 +206,7 @@ class Warning_data(models.Model):
 	status = models.CharField(max_length=50,null=True,default='True',verbose_name='处理标识')
 
 	def __str__(self):
-		return '设备:'+self.device_id+',类型:'+self.device_type+',状态:'+self.info_type+'入表时间:'+str(self.get_time)
+		return '设备:'+self.device_id+',类型:'+self.device_type+',状态:'+self.info_type+',入表时间:'+str(self.get_time)+',真假标识'+self.status
 
 		
 		
@@ -768,9 +776,177 @@ class Oxygen_data_v2(models.Model):
 		return '设备:' + self.device_id + '入表时间:' + str(self.get_time)
 
 	
+class Map_point(models.Model):
+	class Meta:
+		verbose_name = verbose_name_plural = '楼解析数据'
+
+	address = models.CharField(max_length=255,null=True,verbose_name='地址(楼)')
+	lat = models.CharField(max_length=100,null=True,verbose_name='纬度')
+	lng = models.CharField(max_length=100,null=True,verbose_name='经度')		
+	committee_id = models.CharField(max_length=200,null=True,verbose_name='居委会名字')
+	region_id = models.CharField(max_length=200,null=True,verbose_name='街道名字')
+	count = models.IntegerField(default=0, verbose_name='楼总数量')
+	smoke_num = models.IntegerField(default=0, verbose_name='烟感类型数量')
+	water_num = models.IntegerField(default=0, verbose_name='水压类型数量')
+	door_num = models.IntegerField(default=0, verbose_name='门磁类型数量')
+	video_num = models.IntegerField(default=0, verbose_name='视频类型数量')
+	tr_num = models.IntegerField(default=0, verbose_name='垃圾满溢类型数量')
+	g_num = models.IntegerField(default=0, verbose_name='地磁类型数量')
+	x_num = models.IntegerField(default=0, verbose_name='红外类型数量')
+	ele_num = models.IntegerField(default=0, verbose_name='电弧灭弧类型数量')
+	face_num = models.IntegerField(default=0, verbose_name='人脸识别类型数量')
+	addg_num = models.IntegerField(default=0, verbose_name='充电桩类型数量')
+	lift_num = models.IntegerField(default=0, verbose_name='电梯类型数量')
+	ph_num = models.IntegerField(default=0, verbose_name='PH类型数量')
+	N_num = models.IntegerField(default=0, verbose_name='溶解氧类型数量')
+	def __str__(self):
+		return '地址:' + self.address + '总数量:' + str(self.count)
+
+class Test_data(models.Model):
+	class Meta:
+		verbose_name = verbose_name_plural = '模拟报警'
+
+	# device_id = models.CharField(max_length=50,null=True,default='',verbose_name='设备编号')
+	device_id = models.ForeignKey(Getdata_v2,on_delete=models.CASCADE,verbose_name='设备ID')
+	info_type = models.IntegerField(default=1, choices=[(1, '报警'), (7, '未报警')], verbose_name='是否报警')
+
+	def __str__(self):
+		return '设备ID：' + self.device_id.sensor_id + '是否报警：' + str(self.info_type)
+
+class Log_record(models.Model):
+	class Meta:
+		verbose_name = verbose_name_plural = '日志月志周志'
+
+	log_type = models.CharField(max_length=255,null=True,verbose_name='类型')
+	log_address = models.CharField(max_length=255,null=True,verbose_name='报警救援名称')
+	log_status = models.CharField(max_length=255,null=True,verbose_name='状态')
+	get_time = models.DateTimeField(auto_now_add=True,verbose_name='记录时间')
+
+	def __str__(self):
+		return '类型:' + self.log_type + ';报警救援名称:' + self.log_address + ';状态:' + self.log_status + ';记录时间:' + str(self.get_time)
+
+class Map_point_village(models.Model):
+	class Meta:
+		verbose_name = verbose_name_plural = '居委解析数据'
+
+	committee_name = models.CharField(max_length=200,null=True,verbose_name='居委会名字')
+	region_name = models.CharField(max_length=200,null=True,verbose_name='街道名字')
+	lat = models.CharField(max_length=100,null=True,verbose_name='居委纬度')
+	lng = models.CharField(max_length=100,null=True,verbose_name='居委经度')		
+	count = models.IntegerField(default=0, verbose_name='居委总数量')
+	smoke_num = models.IntegerField(default=0, verbose_name='烟感类型数量')
+	water_num = models.IntegerField(default=0, verbose_name='水压类型数量')
+	door_num = models.IntegerField(default=0, verbose_name='门磁类型数量')
+	video_num = models.IntegerField(default=0, verbose_name='视频类型数量')
+	tr_num = models.IntegerField(default=0, verbose_name='垃圾满溢类型数量')
+	g_num = models.IntegerField(default=0, verbose_name='地磁类型数量')
+	x_num = models.IntegerField(default=0, verbose_name='红外类型数量')
+	ele_num = models.IntegerField(default=0, verbose_name='电弧灭弧类型数量')
+	face_num = models.IntegerField(default=0, verbose_name='人脸识别类型数量')
+	addg_num = models.IntegerField(default=0, verbose_name='充电桩类型数量')
+	lift_num = models.IntegerField(default=0, verbose_name='电梯类型数量')
+	ph_num = models.IntegerField(default=0, verbose_name='PH类型数量')
+	N_num = models.IntegerField(default=0, verbose_name='溶解氧类型数量')
+
+	def __str__(self):
+		return '居委解析传感器数量:' + str(self.count)
+
+class Map_point_street(models.Model):
+	class Meta:
+		verbose_name = verbose_name_plural = '街道解析数据'
+
+	region_name = models.CharField(max_length=200,null=True,verbose_name='街道名字')
+	lat = models.CharField(max_length=100,null=True,verbose_name='街道纬度')
+	lng = models.CharField(max_length=100,null=True,verbose_name='街道经度')		
+	count = models.IntegerField(default=0, verbose_name='街道总数量')
+	smoke_num = models.IntegerField(default=0, verbose_name='烟感类型数量')
+	water_num = models.IntegerField(default=0, verbose_name='水压类型数量')
+	door_num = models.IntegerField(default=0, verbose_name='门磁类型数量')
+	video_num = models.IntegerField(default=0, verbose_name='视频类型数量')
+	tr_num = models.IntegerField(default=0, verbose_name='垃圾满溢类型数量')
+	g_num = models.IntegerField(default=0, verbose_name='地磁类型数量')
+	x_num = models.IntegerField(default=0, verbose_name='红外类型数量')
+	ele_num = models.IntegerField(default=0, verbose_name='电弧灭弧类型数量')
+	face_num = models.IntegerField(default=0, verbose_name='人脸识别类型数量')
+	addg_num = models.IntegerField(default=0, verbose_name='充电桩类型数量')
+	lift_num = models.IntegerField(default=0, verbose_name='电梯类型数量')
+	ph_num = models.IntegerField(default=0, verbose_name='PH类型数量')
+	N_num = models.IntegerField(default=0, verbose_name='溶解氧类型数量')
+
+	def __str__(self):
+		return '街道解析传感器数量:' + str(self.count)
+
+class Map_point_type_street(models.Model):
+	class Meta:
+		verbose_name = verbose_name_plural = '街道下类型数量数据'
+
+	meta_type = models.CharField(max_length=255,null=True,verbose_name='设备类型')
+	region_name = models.CharField(max_length=200,null=True,verbose_name='街道名字')
+	lat = models.CharField(max_length=100,null=True,verbose_name='街道纬度')
+	lng = models.CharField(max_length=100,null=True,verbose_name='街道经度')		
+	count = models.IntegerField(default=0, verbose_name='街道类型数量')
+	
+	def __str__(self):
+		return self.region_name + '-' + self.meta_type + ':' + str(self.count) + '个'
+
+class Map_point_type_village(models.Model):
+	class Meta:
+		verbose_name = verbose_name_plural = '居委下类型数量数据'
+
+	meta_type = models.CharField(max_length=255,null=True,verbose_name='设备类型')
+	region_name = models.CharField(max_length=200,null=True,verbose_name='街道名字')
+	village_name = models.CharField(max_length=200,null=True,verbose_name='居委名字')
+	lat = models.CharField(max_length=100,null=True,verbose_name='居委纬度')
+	lng = models.CharField(max_length=100,null=True,verbose_name='居委经度')		
+	count = models.IntegerField(default=0, verbose_name='居委类型数量')
+	
+	def __str__(self):
+		return self.village_name + '-' + self.meta_type + ':' + str(self.count) + '个'
+
+class Map_point_type_address(models.Model):
+	class Meta:
+		verbose_name = verbose_name_plural = '楼内类型数量数据'
+
+	meta_type = models.CharField(max_length=255,null=True,verbose_name='设备类型')
+	region_name = models.CharField(max_length=200,null=True,verbose_name='街道名字')
+	village_name = models.CharField(max_length=200,null=True,verbose_name='居委名字')
+	address_name = models.CharField(max_length=200,null=True,verbose_name='楼地址')
+	lat = models.CharField(max_length=100,null=True,verbose_name='楼纬度')
+	lng = models.CharField(max_length=100,null=True,verbose_name='楼经度')		
+	count = models.IntegerField(default=0, verbose_name='楼内类型数量')
+	
+	def __str__(self):
+		return self.address_name + '-' + self.meta_type + ':' + str(self.count) + '个'
+
+class Focus_data_v2(models.Model):
+	class Meta:
+		verbose_name = verbose_name_plural = '实时报警详情'
+
+	sensor_id = models.CharField(max_length=255,null=True,verbose_name='设备ID')
+	meta_type = models.CharField(max_length=255,null=True,verbose_name='设备类型')
+	region_name = models.CharField(max_length=200,null=True,verbose_name='街道名字')
+	village_name = models.CharField(max_length=200,null=True,verbose_name='居委名字')
+	address_name = models.CharField(max_length=200,null=True,verbose_name='楼地址')
+	street_lat = models.CharField(max_length=200,default='',verbose_name='街道纬度',)
+	street_lng = models.CharField(max_length=200,default='',verbose_name='街道经度',)
+	village_lat = models.CharField(max_length=200,default='',verbose_name='居委会纬度',)
+	village_lng = models.CharField(max_length=200,default='',verbose_name='居委会经度',)
+	lat = models.CharField(max_length=100,null=True,verbose_name='楼纬度')
+	lng = models.CharField(max_length=100,null=True,verbose_name='楼经度')
+	floor = models.CharField(max_length=255,null=True,default='',verbose_name='安装楼层')
+	get_time = models.DateTimeField(auto_now_add=True,verbose_name='报警时间')
+
+	def __str__(self):
+		return self.region_name + '-' + self.meta_type + ':' + str(self.get_time)
+
+# class Focus_street(models.Model):
+# 	class Meta:
+# 		verbose_name = verbose_name_plural = '报警居委'
 
 
-
+# class Focus_street(models.Model):
+# 	class Meta:
+# 		verbose_name = verbose_name_plural = '报警地址'
 
 
 
