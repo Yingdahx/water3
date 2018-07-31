@@ -3216,7 +3216,7 @@ def bj(request):
     # member_user = check_login(request)
     # if not member_user:
     #     return redirect(com_login)
-    # ctx = {}
+    ctx = {}
     # ctx['name'] = member_user.name
     # ctx['icon'] = member_user.icon
 
