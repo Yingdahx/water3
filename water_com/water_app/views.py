@@ -3208,6 +3208,8 @@ def zhsz(request):
     ctx = {}
     ctx['name'] = member_user.name
     ctx['icon'] = member_user.icon
+    if request.method == 'POST':
+        password_old = request.POST.get('')
     return render(request, 'zhsz.html', ctx)
 
 def bj(request):
@@ -3217,4 +3219,7 @@ def bj(request):
     ctx = {}
     ctx['name'] = member_user.name
     ctx['icon'] = member_user.icon
+
+    area = member_user.area
+    print(11111,area)
     return render(request, 'bj.html', ctx)
